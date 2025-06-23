@@ -1,8 +1,14 @@
-function Testing() {
-    <div>
-    <h1>
-        Anak baik 
-    </h1>
-    </div>
+import React from 'react';
+import HeroSection from '../component/HeroSection'; 
+import AboutVideoSection from '@/component/AboutVideoSection';
 
+function App() {
+    return (
+        <div>
+            <HeroSection />
+            <AboutVideoSection/>
+        </div>
+    );
 }
+
+export default App;

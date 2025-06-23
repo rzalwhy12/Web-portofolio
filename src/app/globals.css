@@ -1,1 +1,10 @@
 @import "tailwindcss";
+
+
+/* globals.css or your main CSS file */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* You might also want to set default font for body here if not using font-poppins class */
+body {
+  font-family: 'Poppins', sans-serif;
+}
