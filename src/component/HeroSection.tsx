@@ -1,9 +1,9 @@
 "use client"
 import React, { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
-// Import images as modules. Adjust paths based on your actual file structure.
-import SearchIcon from '../assets/images/search.svg';
+// ==================Import Gambar====================
 import FacebookIcon from '../assets/images/facebook.svg';
 import LinkedInIcon from '../assets/images/linkedin-logo.svg';
 import BehanceIcon from '../assets/images/behance.svg';
@@ -12,41 +12,27 @@ import ArrowDownIcon from '../assets/images/Scroll.svg';
 import meImage from '../assets/images/me.jpg';
 
 const HeroSection: React.FC = () => {
+    // ==================State untuk Menu Navigasi====================
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [isSearchOpen, setIsSearchOpen] = useState(false);
-    const [searchQuery, setSearchQuery] = useState('');
+    // ==================State untuk Visibilitas Navbar====================
+    const [isNavbarVisible, setIsNavbarVisible] = useState(false);
 
+    // ==================Fungsi Toggle Menu====================
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
-        if (isSearchOpen) setIsSearchOpen(false);
-    };
-
-    const toggleSearch = () => {
-        setIsSearchOpen(!isSearchOpen);
-        if (isSearchOpen) setSearchQuery('');
-        if (isMenuOpen) setIsMenuOpen(false);
-    };
-
-    const handleSearchInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setSearchQuery(e.target.value);
-    };
-
-    const handleSearchSubmit = () => {
-        if (searchQuery.trim()) {
-            console.log('Searching for:', searchQuery);
-            // Anda bisa menambahkan logika pencarian di sini,
-            // seperti redirect ke halaman hasil pencarian atau filter data.
-            // Contoh: router.push(`/search?q=${searchQuery}`);
-            setIsSearchOpen(false);
-            setSearchQuery('');
-        }
     };
 
     return (
         <div className="bg-gray-50 text-gray-800 min-h-screen relative pb-20">
-            <header className="flex justify-between items-center px-20 py-5 bg-white shadow-sm">
+            {/* ==================Header / Navbar Utama==================== */}
+            <header
+                className={`fixed top-0 left-0 w-full flex justify-between items-center px-20 py-5 bg-white shadow-sm z-40 transition-opacity duration-300 ease-in-out
+                ${isNavbarVisible ? 'opacity-100' : 'opacity-0'}`}
+                onMouseEnter={() => setIsNavbarVisible(true)}
+                onMouseLeave={() => setIsNavbarVisible(false)}
+            >
                 <div className="navbar-left">
-                    <span className="text-4xl font-bold text-black tracking-custom-tight">Rzal.</span>
+                    <Link href="#home" className="text-4xl font-bold text-black tracking-custom-tight">Rzal.</Link>
                 </div>
                 <div className="flex items-center">
                     <button
@@ -64,57 +50,38 @@ const HeroSection: React.FC = () => {
                 </div>
             </header>
 
-            <div className="absolute top-5 left-1/2 -translate-x-1/2 z-30">
-                {!isSearchOpen ? (
-                    <button className="p-2" onClick={toggleSearch}>
-                        <Image src={SearchIcon} alt="Search" width={30} height={30} />
-                    </button>
-                ) : (
-                    <div className="w-full max-w-2xl bg-white shadow-lg rounded-lg py-4 px-8 transition-all duration-300 ease-in-out">
-                        <div className="flex items-center justify-center">
-                            <input
-                                type="text"
-                                placeholder="Cari halaman berdasarkan judul..."
-                                className="flex-grow p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black"
-                                value={searchQuery}
-                                onChange={handleSearchInputChange}
-                                onKeyPress={(e) => {
-                                    if (e.key === 'Enter') {
-                                        handleSearchSubmit();
-                                    }
-                                }}
-                            />
-                            <button
-                                className="ml-4 p-3 bg-gray-400 text-white rounded-md hover:bg-gray-500 transition duration-150 ease-in-out"
-                                onClick={handleSearchSubmit}
-                            >
-                                Cari
-                            </button>
-                            <button className="ml-4 p-2 text-gray-700 hover:text-gray-900" onClick={toggleSearch}>
-                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                            </button>
-                        </div>
-                    </div>
-                )}
-            </div>
-
-            <main className="flex flex-col lg:flex-row justify-center items-center py-20 px-20 gap-24">
+            {/* ==================Konten Utama Hero Section==================== */}
+            <main id="home" className="flex flex-col lg:flex-row justify-center items-center py-20 px-20 gap-24 pt-40">
                 <div className="hero-content max-w-lg">
                     <p className="text-lg text-gray-500 mb-1">— Hello</p>
                     <h1 className="text-6xl font-bold mb-5 leading-tight">I'm Risal Wahyu Agustin</h1>
                     <p className="text-2xl font-medium mb-5 leading-relaxed">A "Full-Stack Web Developer" </p>
                     <p className="text-base text-gray-600 leading-relaxed mb-10">Of course, there's so much more to me than just a few fancy titles. Scroll down and get to know me.</p>
 
-                    {/* Tombol Call-to-Action (CTA) baru */}
-                    <button className="bg-gray-400 text-white px-8 py-3 rounded-md text-lg font-medium hover:bg-gray-500 transition duration-300 ease-in-out mb-8 ">
-                        View Portfolio
-                    </button>
+                    {/* ==================Tombol Call-to-Action (CTA)==================== */}
+                    <a
+                        href="https://drive.google.com/file/d/12pUzNsMKjiJThkEx0G22i-MIEuB554jl/view?usp=sharing"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-block bg-gray-400 text-white px-8 py-3 rounded-md text-lg font-medium hover:bg-gray-500 transition duration-300 ease-in-out mb-8"
+                    >
+                        View my-CV
+                    </a>
 
+                    {/* ==================Ikon Media Sosial==================== */}
                     <div className="flex gap-5 mb-12">
-                        <a href="#"><Image src={FacebookIcon} alt="Facebook" width={24} height={24} /></a>
-                        <a href="#"><Image src={LinkedInIcon} alt="LinkedIn" width={24} height={24} /></a>
-                        <a href="#"><Image src={BehanceIcon} alt="Behance" width={24} height={24} /></a>
-                        <a href="#"><Image src={TwitterIcon} alt="Twitter" width={24} height={24} /></a>
+                        <a href="https://www.facebook.com/risal.agosteen" target="_blank" rel="noopener noreferrer">
+                            <Image src={FacebookIcon} alt="Facebook" width={24} height={24} />
+                        </a>
+                        <a href="https://www.linkedin.com/in/risal-wahyu-agustin-6547b5362/" target="_blank" rel="noopener noreferrer">
+                            <Image src={LinkedInIcon} alt="LinkedIn" width={24} height={24} />
+                        </a>
+                        <a href="https://www.behance.net/risalagustin" target="_blank" rel="noopener noreferrer">
+                            <Image src={BehanceIcon} alt="Behance" width={24} height={24} />
+                        </a>
+                        <a href="https://x.com/RisalWahyu11493" target="_blank" rel="noopener noreferrer">
+                            <Image src={TwitterIcon} alt="Twitter" width={24} height={24} />
+                        </a>
                     </div>
                 </div>
                 <div className="hero-image">
@@ -122,10 +89,14 @@ const HeroSection: React.FC = () => {
                 </div>
             </main>
 
+            {/* ==================Indikator Scroll Down==================== */}
             <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center text-sm text-gray-500">
-                <Image src={ArrowDownIcon} alt="Scroll Down" width={70} height={70} className="mt-2.5" />
+                <Link href="#about-me-detailed">
+                    <Image src={ArrowDownIcon} alt="Scroll Down" width={70} height={70} className="mt-2.5 cursor-pointer" />
+                </Link>
             </div>
 
+            {/* ==================Overlay Menu Samping==================== */}
             <div
                 className={`fixed top-0 right-0 h-full bg-white w-64 shadow-lg z-50 transform transition-transform duration-300 ease-in-out
                 ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}
@@ -134,12 +105,20 @@ const HeroSection: React.FC = () => {
                     <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                 </button>
                 <nav className="flex flex-col p-8 pt-20">
-                    <a href="#" className="py-3 text-lg font-medium text-gray-800 hover:text-gray-900 transition duration-150 ease-in-out">Home</a>
-                    <a href="#" className="py-3 text-lg font-medium text-gray-800 hover:text-gray-900 transition duration-150 ease-in-out">About Me</a>
-                    <a href="#" className="py-3 text-lg font-medium text-gray-800 hover:text-gray-900 transition duration-150 ease-in-out">Portofolio</a>
-                    <a href="#" className="py-3 text-lg font-medium text-gray-800 hover:text-gray-900 transition duration-150 ease-in-out">Testimoni</a>
-                    <a href="#" className="py-3 text-lg font-medium text-gray-800 hover:text-gray-900 transition duration-150 ease-in-out">Contact Me</a>
-                    <a href="#" className="py-3 text-lg font-medium text-gray-800 hover:text-gray-900 transition duration-150 ease-in-out">My CV</a>
+                    <Link href="#home" className="py-3 text-lg font-medium text-gray-800 hover:text-gray-900 transition duration-150 ease-in-out" onClick={toggleMenu}>Home</Link>
+                    <Link href="#about-me-detailed" className="py-3 text-lg font-medium text-gray-800 hover:text-gray-900 transition duration-150 ease-in-out" onClick={toggleMenu}>About Me</Link>
+                    <Link href="#portfolio" className="py-3 text-lg font-medium text-gray-800 hover:text-gray-900 transition duration-150 ease-in-out" onClick={toggleMenu}>Portofolio</Link>
+                    <Link href="#client-testimonial" className="py-3 text-lg font-medium text-gray-800 hover:text-gray-900 transition duration-150 ease-in-out" onClick={toggleMenu}>Testimoni</Link>
+                    <Link href="#contact-me" className="py-3 text-lg font-medium text-gray-800 hover:text-gray-900 transition duration-150 ease-in-out" onClick={toggleMenu}>Contact Me</Link>
+                    <a
+                        href="https://drive.google.com/file/d/12pUzNsMKjiJThkEx0G22i-MIEuB554jl/view?usp=sharing"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="py-3 text-lg font-medium text-gray-800 hover:text-gray-900 transition duration-150 ease-in-out"
+                        onClick={toggleMenu}
+                    >
+                        My CV
+                    </a>
                 </nav>
             </div>
         </div>
