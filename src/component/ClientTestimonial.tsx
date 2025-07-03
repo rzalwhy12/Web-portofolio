@@ -49,15 +49,26 @@ const ClientTestimonial: React.FC = () => {
 
     return (
         // ==================Bagian Utama Testimonial Klien====================
-        <section id="client-testimonial" className="py-20 bg-gray-50">
+        <section
+            id="client-testimonial"
+            // Latar belakang di light mode: abu-abu terang (50), di dark mode: abu-abu sangat gelap (900)
+            className="py-20 bg-gray-50 dark:bg-gray-900"
+        >
             <div className="container mx-auto px-4 text-center">
                 {/* ==================Judul Bagian==================== */}
-                <h2 className="text-4xl font-bold mb-12 text-gray-900">Client Testimonial</h2>
+                <h2 className="text-4xl font-bold mb-12 text-gray-900 dark:text-white">Client Testimonial</h2>
 
                 {/* ==================Wadah Konten Testimonial==================== */}
-                <div className="flex flex-col md:flex-row items-center md:items-start justify-center gap-10 md:gap-16 max-w-4xl mx-auto p-8 bg-white rounded-lg shadow-lg">
-                {/* ==================Gambar Klien==================== */}
-                    <div className="flex-shrink-0 w-48 h-48 sm:w-64 sm:h-64 rounded-lg overflow-hidden shadow-md">
+                <div
+                    // Latar belakang di light mode: putih, di dark mode: abu-abu gelap (800)
+                    // Shadow di light mode: shadow-lg, di dark mode: shadow-xl dengan warna ungu transparan
+                    className="flex flex-col md:flex-row items-center md:items-start justify-center gap-10 md:gap-16 max-w-4xl mx-auto p-8 bg-white dark:bg-gray-800 rounded-lg shadow-lg dark:shadow-xl dark:shadow-purple-900/50"
+                >
+                    {/* ==================Gambar Klien==================== */}
+                    <div
+                        // Shadow di light mode: shadow-md, di dark mode: shadow-lg dengan warna ungu transparan
+                        className="flex-shrink-0 w-48 h-48 sm:w-64 sm:h-64 rounded-lg overflow-hidden shadow-md dark:shadow-lg dark:shadow-purple-900/40"
+                    >
                         <Image
                             src={currentTestimonial.image}
                             alt={currentTestimonial.name}
@@ -69,14 +80,19 @@ const ClientTestimonial: React.FC = () => {
 
                     {/* ==================Detail Testimonial & Klien==================== */}
                     <div className="flex-grow text-left">
-                        <p className="text-5xl font-extrabold text-gray-400 mb-4 select-none">&ldquo;</p>
-                        <p className="text-xl leading-relaxed text-gray-800 mb-6">
+                        {/* Tanda kutip atas */}
+                        <p className="text-5xl font-extrabold text-gray-400 dark:text-gray-600 mb-4 select-none">&ldquo;</p>
+                        {/* Teks kutipan testimonial */}
+                        <p className="text-xl leading-relaxed text-gray-800 dark:text-gray-200 mb-6">
                             {currentTestimonial.quote}
                         </p>
-                        <p className="text-5xl font-extrabold text-gray-400 mb-8 text-right select-none">&rdquo;</p>
+                        {/* Tanda kutip bawah */}
+                        <p className="text-5xl font-extrabold text-gray-400 dark:text-gray-600 mb-8 text-right select-none">&rdquo;</p>
 
-                        <h3 className="text-xl font-bold text-gray-900">{currentTestimonial.name}</h3>
-                        <p className="text-base text-gray-600">{currentTestimonial.title}</p>
+                        {/* Nama klien */}
+                        <h3 className="text-xl font-bold text-gray-900 dark:text-white">{currentTestimonial.name}</h3>
+                        {/* Jabatan klien */}
+                        <p className="text-base text-gray-600 dark:text-gray-400">{currentTestimonial.title}</p>
 
                         {/* ==================Navigasi Testimonial==================== */}
                         <div className="flex justify-between items-center mt-10">
@@ -86,22 +102,24 @@ const ClientTestimonial: React.FC = () => {
                                     <span
                                         key={index}
                                         className={`w-2.5 h-2.5 rounded-full cursor-pointer transition-colors duration-200 ${
-                                            index === currentTestimonialIndex ? 'bg-gray-900' : 'bg-gray-400'
+                                            // Warna dot aktif di light mode: abu-abu gelap (900), di dark mode: ungu (600)
+                                            // Warna dot tidak aktif di light mode: abu-abu (400), di dark mode: abu-abu gelap (600)
+                                            index === currentTestimonialIndex ? 'bg-gray-900 dark:bg-purple-600' : 'bg-gray-400 dark:bg-gray-600'
                                         }`}
                                         onClick={() => goToSpecificTestimonial(index)}
                                     ></span>
                                 ))}
                             </div>
                             {/* ==================Tombol Panah==================== */}
-                            <div className="flex space-x-4 text-gray-900 text-3xl font-bold">
+                            <div className="flex space-x-4 text-gray-900 dark:text-white text-3xl font-bold">
                                 <span
-                                    className="cursor-pointer select-none hover:text-gray-700 transition-colors duration-200"
+                                    className="cursor-pointer select-none hover:text-gray-700 dark:hover:text-purple-400 transition-colors duration-200"
                                     onClick={goToPreviousTestimonial}
                                 >
                                     &larr;
                                 </span>
                                 <span
-                                    className="cursor-pointer select-none hover:text-gray-700 transition-colors duration-200"
+                                    className="cursor-pointer select-none hover:text-gray-700 dark:hover:text-purple-400 transition-colors duration-200"
                                     onClick={goToNextTestimonial}
                                 >
                                     &rarr;

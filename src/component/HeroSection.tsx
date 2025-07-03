@@ -45,24 +45,34 @@ const HeroSection: React.FC = () => {
 
                     {/* ==================Ikon Media Sosial==================== */}
                     <div className="flex justify-center lg:justify-start gap-5 mb-12">
-                        {/* Ikon SVG biasanya perlu diwarnai ulang menggunakan `filter` atau `currentColor` dan `text-color` */}
-                        {/* Jika ikon Anda adalah file SVG asli yang langsung di-inline atau jika Anda bisa mengubah `fill` mereka,
-                            Anda bisa menggunakan `dark:filter dark:invert` pada Image atau langsung `text-gray-400 dark:text-gray-200`
-                            jika SVG menggunakan `fill="currentColor"`.
-                            Untuk kesederhanaan, saya tambahkan `opacity` untuk memberikan sedikit perbedaan di dark mode jika ikon tidak berubah warna.
-                            Idealnya, ikon SVG Anda harus mendukung perubahan `fill` melalui `currentColor` agar bisa merespons `text-color`.
-                        */}
-                        <a href="https://www.facebook.com/risal.agosteen" target="_blank" rel="noopener noreferrer" className="opacity-70 dark:opacity-90 hover:opacity-100 transition-opacity duration-200">
-                            <Image src={FacebookIcon} alt="Facebook" width={24} height={24} />
+                        
+                        <a href="https://www.facebook.com/risal.agosteen" target="_blank" rel="noopener noreferrer" aria-label="Facebook"
+                            className="text-gray-600 hover:text-gray-800 transition-colors duration-200
+                                dark:text-gray-400 dark:hover:text-white">
+                            <svg className="w-8 h-8 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M14 13.5h2.5l1-4H14V6.5c0-1.54 0.5-2.5 2.75-2.5H19V0h-3.5C11.95 0 10 1.94 10 5.24V8.5H7v4h3v8h4v-7.5z" />
+                            </svg>
                         </a>
-                        <a href="https://www.linkedin.com/in/risal-wahyu-agustin-6547b5362/" target="_blank" rel="noopener noreferrer" className="opacity-70 dark:opacity-90 hover:opacity-100 transition-opacity duration-200">
-                            <Image src={LinkedInIcon} alt="LinkedIn" width={24} height={24} />
+                        <a href="https://www.linkedin.com/in/risal-wahyu-agustin-6547b5362/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"
+                            className="text-gray-700 hover:text-gray-900 transition-colors duration-200
+                                dark:text-gray-400 dark:hover:text-white">
+                            <svg className="w-8 h-8 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M22.23 0H1.77C.79 0 0 .77 0 1.73v20.54c0 .96.79 1.73 1.77 1.73h20.46c.98 0 1.77-.77 1.77-1.73V1.73C24 .77 23.21 0 22.23 0zM7.34 20.47H3.59V9.49h3.75v10.98zM5.47 7.9c-1.2 0-2.17-.98-2.17-2.18 0-1.2.97-2.18 2.17-2.18s2.17.98 2.17 2.18c-.01 1.2-.97 2.18-2.17 2.18zM20.47 20.47h-3.75v-5.6c0-1.34-.02-3.06-1.87-3.06-1.87 0-2.16 1.46-2.16 2.97v5.69h-3.75V9.49h3.6v1.65h.05c.5-.95 1.72-1.95 3.55-1.95 3.8 0 4.5 2.5 4.5 5.77v6.01z" />
+                            </svg>
                         </a>
-                        <a href="https://www.behance.net/risalagustin" target="_blank" rel="noopener noreferrer" className="opacity-70 dark:opacity-90 hover:opacity-100 transition-opacity duration-200">
-                            <Image src={BehanceIcon} alt="Behance" width={24} height={24} />
+                        <a href="https://www.behance.net/risalagustin" target="_blank" rel="noopener noreferrer" aria-label="Behance"
+                            className="text-gray-800 hover:text-gray-900 transition-colors duration-200
+                                    dark:text-gray-400 dark:hover:text-white">
+                            <svg className="w-8 h-8 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.5 12c0-5.25 4.25-9.5 9.5-9.5S21.5 6.75 21.5 12 17.25 21.5 12 21.5 2.5 17.25 2.5 12zM15 12c0-1.66-1.34-3-3-3s-3 1.34-3 3 1.34 3 3 3 3-1.34 3-3zM12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5z" />
+                            </svg>
                         </a>
-                        <a href="https://x.com/RisalWahyu11493" target="_blank" rel="noopener noreferrer" aria-label="Twitter" className="text-gray-400 hover:text-gray-600 transition-colors duration-200 dark:text-gray-300 dark:hover:text-white">
-                            <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-6.793-8.983L5.418 21.75H1.49L9.35 12.81 1.01 2.25h8.29L12 9.313 18.244 2.25zm-2.43 14.887l.867.754h3.084l-4.24-3.665-2.478 3.298zm-9.357-11.23L4.17 3.526h-3.084l4.24 3.665L9.357 5.25z" /></svg>
+                        <a href="https://x.com/RisalWahyu11493" target="_blank" rel="noopener noreferrer" aria-label="Twitter"
+                            className="text-gray-400 hover:text-gray-600 transition-colors duration-200
+                                    dark:text-gray-300 dark:hover:text-white">
+                            <svg className="w-8 h-8 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-6.793-8.983L5.418 21.75H1.49L9.35 12.81 1.01 2.25h8.29L12 9.313 18.244 2.25zm-2.43 14.887l.867.754h3.084l-4.24-3.665-2.478 3.298zm-9.357-11.23L4.17 3.526h-3.084l4.24 3.665L9.357 5.25z" />
+                            </svg>
                         </a>
                     </div>
                 </div>
