@@ -182,7 +182,7 @@ const Navbar = () => {
                         </nav>
 
                         <div className="hidden md:block">
-                            <ThemeToggleButton />
+                            <ThemeToggleButton/>
                         </div>
 
                         {/* Tombol Toggle Menu untuk Mobile - Ganti dengan ikon Menu dari Lucide */}
