@@ -11,7 +11,7 @@ const AboutVideoSection: React.FC = () => {
             <div className="video-container relative w-full max-w-3xl aspect-video bg-gray-200 rounded-lg overflow-hidden shadow-xl">
                 
                 <iframe width="560" height="315" 
-                    src="https://www.youtube.com/embed/GK54SE-TQis?si=ODowuFyc4Hoq4lv9"
+                    src="https://www.youtube.com/watch?v=5Peo-ivmupE"
                     title="Learn about me in 60 seconds"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
