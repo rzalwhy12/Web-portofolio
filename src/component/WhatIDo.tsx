@@ -18,11 +18,6 @@ const allServices: Service[] = [
     { id: 'uiux', title: 'UI & UX Design', description: 'User interface design, user experience design, user research.', linkHref: 'uiux' },
     { id: 'graphic', title: 'Graphic Design', description: 'Visual identity, branding, marketing materials.', linkHref: 'desain' },
     { id: 'webdev', title: 'Web Development', description: 'Front-end, back-end, full-stack development, responsive design.', linkHref: 'webdev' },
-    { id: 'mobiledev', title: 'Mobile App Development', description: 'Native and hybrid mobile application development for iOS and Android.', linkHref: 'mobiledev' },
-    { id: 'content', title: 'Content Creation', description: 'Writing, editing, and strategy for digital content.', linkHref: 'content' },
-    { id: 'seo', title: 'SEO Optimization', description: 'Improving search engine ranking and organic traffic.', linkHref: 'seo' },
-    { id: 'devops', title: 'DevOps & Cloud', description: 'CI/CD pipelines, cloud infrastructure (AWS, Azure, GCP).', linkHref: 'devops' },
-    { id: 'security', title: 'Cyber Security', description: 'Vulnerability assessment, penetration testing, security audits.', linkHref: 'security' },
 ];
 
 const CARDS_PER_PAGE = 3; // Jumlah kartu yang ditampilkan per halaman
