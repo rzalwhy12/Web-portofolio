@@ -14,7 +14,7 @@ import meImage from '../assets/images/me.webp';
 const HeroSection: React.FC = () => {
 
     return (
-        <div className="dark:bg bg-gray-50 text-gray-800 min-h-screen relative pb-20">
+        <div className="dark:bg-black bg-gray-50 text-gray-800 min-h-screen relative pb-20">
 
             {/* ==================Konten Utama Hero Section==================== */}
             <main id="home" className="flex flex-col lg:flex-row justify-center items-center py-20 px-4 lg:px-20 gap-12 lg:gap-24 pt-40">
