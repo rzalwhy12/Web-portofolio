@@ -60,9 +60,36 @@ export const skillsData = {
             },
         ],
     },
+    'Music-Producer': {
+        title: 'Music Producer',
+        description: 'Sebagai seorang Full-Stack Web Developer, saya memiliki keahlian dalam membangun dan mengelola aplikasi web dari sisi front-end hingga back-end. Saya fokus pada pembuatan solusi yang responsif, fungsional, dan memberikan pengalaman pengguna yang optimal.',
+        applications: ['VS Code', 'Chrome DevTools', 'Git', 'GitHub', 'Node.js', 'npm/yarn', 'React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'MongoDB', 'Express.js', 'Python', 'Django/Flask'],
+        projects: [
+            {
+                name: 'Personal Portfolio Website (Saat Ini)',
+                description: 'Pengembangan website portofolio pribadi ini menggunakan Next.js, TypeScript, dan Tailwind CSS untuk menampilkan karya dan informasi profesional.',
+                link: '#',
+            },
+            {
+                name: 'E-commerce Platform Backend',
+                description: 'Mengembangkan API RESTful dengan Node.js dan Express.js, serta database MongoDB, untuk mendukung operasi e-commerce seperti manajemen produk, pesanan, dan otentikasi pengguna.',
+                link: '#',
+            },
+            {
+                name: 'Real-time Chat Application',
+                description: 'Membangun aplikasi chat real-time menggunakan WebSockets (Socket.IO) dengan React.js di front-end dan Node.js di back-end.',
+                link: '#',
+            },
+            {
+                name: 'Blog Aplikasi dengan Django',
+                description: 'Membuat aplikasi blog dengan framework Django (Python), termasuk sistem otentikasi, CRUD untuk postingan, dan komentar.',
+                link: '#',
+            },
+        ],
+    },
 };
 
-export type SkillKey = 'ui-ux-design' | 'graphic-design' | 'web-development';
+export type SkillKey = 'ui-ux-design' | 'graphic-design' | 'web-development' | 'Music-Producer';
 
 export interface Project {
     name: string;

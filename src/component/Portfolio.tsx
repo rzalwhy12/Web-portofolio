@@ -1,8 +1,7 @@
 "use client"
-import React, { useState } from 'react';
-import Image from 'next/image'; 
+import React, { useState, useMemo } from 'react';
+import Image from 'next/image';
 
-// Definisi tipe untuk item portofolio
 interface PortfolioItem {
     id: number;
     category: 'All' | 'UI & UX' | 'Graphic Design' | 'Web Development';
@@ -10,22 +9,40 @@ interface PortfolioItem {
     title?: string;
     link?: string;
 }
-// Letak data Portofolio
+
 const portfolioItems: PortfolioItem[] = [
-    { id: 1, category: 'UI & UX', imageUrl: 'images/portofolio/id1.jpg', title: 'UI/UX Project', link: 'https://www.google.com' },
-    { id: 2, category: 'Graphic Design', imageUrl: 'images/portofolio/id2.jpg', title: 'Brochure Design', link: 'https://www.google.com' },
-    { id: 3, category: 'Web Development', imageUrl: 'images/portofolio/id3.jpg', title: 'Code Snippet', link: 'https://www.google.com' },
-    { id: 4, category: 'Graphic Design', imageUrl: 'images/portofolio/id4.jpg', title: 'Product Packaging', link: 'https://www.google.com' },
-    { id: 5, category: 'UI & UX', imageUrl: 'images/portofolio/id5.jpeg', title: 'Wireframing', link: 'https://www.google.com' },
-    { id: 6, category: 'Graphic Design', imageUrl: 'images/portofolio/id6.png', title: 'Design Tools', link: 'https://www.google.com' },
+    { id: 1, category: 'Graphic Design', imageUrl: 'images/portofolio/ig1.png', title: 'Instagram Feed', link: 'https://www.google.com' },
+    { id: 2, category: 'Graphic Design', imageUrl: 'images/portofolio/ig2.png', title: 'Instagram Feed', link: 'https://www.google.com' },
+    { id: 3, category: 'Graphic Design', imageUrl: 'images/portofolio/ig3.png', title: 'Instagram Feed', link: 'https://www.google.com' },
+    { id: 4, category: 'Web Development', imageUrl: 'images/portofolio/id3.jpg', title: 'Code Snippet', link: 'https://www.google.com' },
+    { id: 5, category: 'UI & UX', imageUrl: 'images/portofolio/uiux1.png', title: 'ToDo App Desain', link: 'https://www.google.com' },
+    { id: 6, category: 'Web Development', imageUrl: 'images/portofolio/todo.png', title: 'ToDo App ', link: 'https://www.google.com' },
+    { id: 7, category: 'UI & UX', imageUrl: 'images/portofolio/id1.jpg', title: 'Finance App UI', link: 'https://www.google.com' },
 ];
+
+const ITEMS_PER_PAGE = 6;
 
 const Portfolio: React.FC = () => {
     const [activeCategory, setActiveCategory] = useState<PortfolioItem['category']>('All');
+    const [currentPage, setCurrentPage] = useState(1);
 
-    const filteredItems = activeCategory === 'All'
-        ? portfolioItems
-        : portfolioItems.filter(item => item.category === activeCategory);
+    // ===============================Filter item dan reset halaman=============================
+    const filteredItems = useMemo(() => {
+        setCurrentPage(1);
+        return activeCategory === 'All'
+            ? portfolioItems
+            : portfolioItems.filter(item => item.category === activeCategory);
+    }, [activeCategory]);
+
+    // ===============================Hitung total halaman=============================
+    const totalPages = Math.ceil(filteredItems.length / ITEMS_PER_PAGE);
+
+    // ===============================Dapatkan item untuk halaman saat ini=============================
+    const paginatedItems = useMemo(() => {
+        const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+        const endIndex = startIndex + ITEMS_PER_PAGE;
+        return filteredItems.slice(startIndex, endIndex);
+    }, [filteredItems, currentPage]);
 
     const categories: PortfolioItem['category'][] = [
         'All',
@@ -33,6 +50,13 @@ const Portfolio: React.FC = () => {
         'Graphic Design',
         'Web Development',
     ];
+
+    // ===============================Fungsi untuk mengganti halaman=============================
+    const handlePageChange = (page: number) => {
+        if (page >= 1 && page <= totalPages) {
+            setCurrentPage(page);
+        }
+    };
 
     return (
         <section id="portfolio" className="py-20 bg-gray-50">
@@ -58,7 +82,8 @@ const Portfolio: React.FC = () => {
 
                 {/* Grid Portofolio */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {filteredItems.map((item) => (
+                    {/* ===============================Render item paginasi============================= */}
+                    {paginatedItems.map((item) => (
                         <a
                             key={item.id}
                             href={item.link || '#'}
@@ -70,9 +95,8 @@ const Portfolio: React.FC = () => {
                                 src={item.imageUrl}
                                 alt={item.title || item.category}
                                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-
                             />
-                            <div className="absolute inset-0 bg-black bg-opacity-40 flex items-end p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div className="absolute inset-0 bg-gray-600/40 flex items-end p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                 <div className="text-white text-left">
                                     <h3 className="text-xl font-bold mb-1">{item.title || item.category}</h3>
                                     <p className="text-sm">{item.category}</p>
@@ -82,18 +106,38 @@ const Portfolio: React.FC = () => {
                     ))}
                 </div>
 
-                {/* Pagination dan Navigasi */}
-                <div className="flex justify-center items-center mt-12 space-x-4 md:space-x-10">
-                    <div className="flex space-x-2">
-                        <span className="w-2.5 h-2.5 bg-gray-900 rounded-full cursor-pointer"></span>
-                        <span className="w-2.5 h-2.5 bg-gray-400 rounded-full cursor-pointer"></span>
-                        <span className="w-2.5 h-2.5 bg-gray-400 rounded-full cursor-pointer"></span>
+                {/* Pagination dan Navigasi - Hanya muncul jika ada lebih dari 6 item */}
+                {/* ===============================Tampilkan kontrol pagination jika perlu============================= */}
+                {filteredItems.length > ITEMS_PER_PAGE && (
+                    <div className="flex justify-center items-center mt-12 space-x-4 md:space-x-10">
+                        <div className="flex space-x-2">
+                            {/* ===============================Loop untuk dot halaman============================= */}
+                            {Array.from({ length: totalPages }, (_, i) => (
+                                <span
+                                    key={i + 1}
+                                    className={`w-2.5 h-2.5 rounded-full cursor-pointer ${currentPage === i + 1 ? 'bg-gray-900' : 'bg-gray-400'}`}
+                                    onClick={() => handlePageChange(i + 1)}
+                                ></span>
+                            ))}
+                        </div>
+                        <div className="flex space-x-4 text-gray-900 text-3xl font-bold">
+                            {/* ===============================Tombol panah sebelumnya============================= */}
+                            <span
+                                className={`cursor-pointer select-none ${currentPage === 1 ? 'text-gray-300' : ''}`}
+                                onClick={() => handlePageChange(currentPage - 1)}
+                            >
+                                &larr;
+                            </span>
+                            {/* ===============================Tombol panah berikutnya============================= */}
+                            <span
+                                className={`cursor-pointer select-none ${currentPage === totalPages ? 'text-gray-300' : ''}`}
+                                onClick={() => handlePageChange(currentPage + 1)}
+                            >
+                                &rarr;
+                            </span>
+                        </div>
                     </div>
-                    <div className="flex space-x-4 text-gray-900 text-3xl font-bold">
-                        <span className="cursor-pointer select-none">&larr;</span>
-                        <span className="cursor-pointer select-none">&rarr;</span>
-                    </div>
-                </div>
+                )}
             </div>
         </section>
     );

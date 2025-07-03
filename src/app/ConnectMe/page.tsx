@@ -1,3 +1,4 @@
+// components/ConnectMe.tsx atau pages/connect-me.tsx
 "use client";
 
 import React, { useState } from 'react';
@@ -11,6 +12,8 @@ const ConnectMe: React.FC = () => {
         subject: '',
         message: '',
     });
+    const [isSubmitting, setIsSubmitting] = useState(false); // State untuk status pengiriman
+    const [submitMessage, setSubmitMessage] = useState(''); // State untuk pesan feedback
 
     // ==================Handler Perubahan Input====================
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -22,16 +25,40 @@ const ConnectMe: React.FC = () => {
     };
 
     // ==================Handler Pengiriman Formulir====================
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log('Form submitted:', formData);
-        alert('Thank you for your message! I will get back to you soon.');
-        setFormData({
-            name: '',
-            email: '',
-            subject: '',
-            message: '',
-        });
+        setIsSubmitting(true); // Mulai proses pengiriman
+        setSubmitMessage(''); // Kosongkan pesan sebelumnya
+
+        try {
+            // =========================Kirim data formulir ke API Route=========================
+            const response = await fetch('/api/send-email', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                setSubmitMessage('Thank you for your message! I will get back to you soon.');
+                setFormData({
+                    name: '',
+                    email: '',
+                    subject: '',
+                    message: '',
+                });
+            } else {
+                setSubmitMessage(`Failed to send message: ${data.message || 'Unknown error'}`);
+            }
+        } catch (error) {
+            console.error('Submission error:', error);
+            setSubmitMessage('An error occurred. Please try again later.');
+        } finally {
+            setIsSubmitting(false); // Selesaikan proses pengiriman
+        }
     };
 
     return (
@@ -122,11 +149,18 @@ const ConnectMe: React.FC = () => {
                             </div>
                             <button
                                 type="submit"
-                                className="bg-gray-600 text-white px-8 py-3 rounded-lg text-lg font-semibold shadow-md
-                                hover:bg-gray-700 transition-colors duration-300"
+                                disabled={isSubmitting} // Disable tombol saat sedang mengirim
+                                className={`bg-gray-600 text-white px-8 py-3 rounded-lg text-lg font-semibold shadow-md
+                                hover:bg-gray-700 transition-colors duration-300 ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
                             >
-                                Send Message
+                                {isSubmitting ? 'Sending...' : 'Send Message'}
                             </button>
+                            {/* =========================Pesan feedback pengiriman========================= */}
+                            {submitMessage && (
+                                <p className={`mt-4 text-center ${submitMessage.includes('Failed') || submitMessage.includes('error') ? 'text-red-600' : 'text-green-600'}`}>
+                                    {submitMessage}
+                                </p>
+                            )}
                         </form>
                     </div>
 

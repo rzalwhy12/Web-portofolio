@@ -3,14 +3,14 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import PersonImg from '../assets/images/Col-block.png'; // Pastikan path ini benar
-import PersonImg2 from '../assets/images/jokoway.jpeg';
+import PersonImg2 from '../assets/images/r7.jpg';
 
 // ==================Data Testimonial====================
 const testimonials = [
     {
         id: 1,
-        name: 'Jokowi',
-        title: 'CEO Of Kerajaan Jawa',
+        name: 'Ronaldo',
+        title: 'Goat',
         quote: 'Kerjanya bagus , anaknya rajin cuma makannya agak banyak tapi ofer ol rekomendet',
         image: PersonImg2,
     },
