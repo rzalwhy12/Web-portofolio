@@ -4,16 +4,25 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 
+// Jika Anda masih ingin menggunakan gambar dari '../assets/images',
+// pastikan Anda mengimpornya dengan benar untuk Next.js Image component
+// import FacebookIcon from '../assets/images/facebook.svg'; // Hapus jika sudah SVG inline
+// import LinkedInIcon from '../assets/images/linkedin-logo.svg'; // Hapus jika sudah SVG inline
+// import BehanceIcon from '../assets/images/behance.svg'; // Hapus jika sudah SVG inline
+// import Image from 'next/image'; // Hapus jika tidak ada Image dari next/image yang digunakan
+
 const ConnectMe: React.FC = () => {
-    //  ==================Manajemen State====================
+    // ==================Manajemen State====================
     const [formData, setFormData] = useState({
         name: '',
         email: '',
         subject: '',
         message: '',
     });
-    const [isSubmitting, setIsSubmitting] = useState(false); // State untuk status pengiriman
-    const [submitMessage, setSubmitMessage] = useState(''); // State untuk pesan feedback
+    // Kita akan tetap menggunakan isSubmitting untuk feedback UI (misal: tombol disabled)
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    // Pesan feedback setelah mailto: terbuka
+    const [submitMessage, setSubmitMessage] = useState('');
 
     // ==================Handler Perubahan Input====================
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -24,41 +33,39 @@ const ConnectMe: React.FC = () => {
         }));
     };
 
-    // ==================Handler Pengiriman Formulir====================
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    // ==================Handler Pengiriman Formulir (Menggunakan mailto:)====================
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        setIsSubmitting(true); // Mulai proses pengiriman
+        setIsSubmitting(true); // Mulai proses feedback UI
         setSubmitMessage(''); // Kosongkan pesan sebelumnya
 
-        try {
-            // =========================Kirim data formulir ke API Route=========================
-            const response = await fetch('/api/send-email', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData),
+        const recipientEmail = 'rzalcorp05@gmail.com'; // Alamat email tujuan
+        const encodedSubject = encodeURIComponent(`Message from Portfolio: ${formData.subject || 'No Subject'}`);
+        const encodedBody = encodeURIComponent(
+            `Name: ${formData.name}\n` +
+            `Email: ${formData.email}\n` +
+            `Subject: ${formData.subject || 'N/A'}\n\n` +
+            `Message:\n${formData.message}`
+        );
+
+        const mailtoLink = `mailto:${recipientEmail}?subject=${encodedSubject}&body=${encodedBody}`;
+
+        // Buka aplikasi email default pengguna
+        window.location.href = mailtoLink;
+
+        // Berikan feedback kepada pengguna setelah mailto terbuka
+        // Kita tidak bisa tahu pasti apakah pengguna mengirim emailnya atau tidak.
+        setTimeout(() => {
+            setIsSubmitting(false); // Selesaikan proses feedback UI
+            setSubmitMessage('Your email client has been opened. Please review the message and click "Send".');
+            // Opsional: kosongkan form setelah mencoba membuka mailto
+            setFormData({
+                name: '',
+                email: '',
+                subject: '',
+                message: '',
             });
-
-            const data = await response.json();
-
-            if (response.ok) {
-                setSubmitMessage('Thank you for your message! I will get back to you soon.');
-                setFormData({
-                    name: '',
-                    email: '',
-                    subject: '',
-                    message: '',
-                });
-            } else {
-                setSubmitMessage(`Failed to send message: ${data.message || 'Unknown error'}`);
-            }
-        } catch (error) {
-            console.error('Submission error:', error);
-            setSubmitMessage('An error occurred. Please try again later.');
-        } finally {
-            setIsSubmitting(false); // Selesaikan proses pengiriman
-        }
+        }, 1000); // Beri sedikit waktu untuk browser membuka aplikasi email
     };
 
     return (
@@ -67,7 +74,8 @@ const ConnectMe: React.FC = () => {
             <div className="container mx-auto px-4">
                 {/* ==================Tombol Kembali==================== */}
                 <div className="mb-10">
-                    <Link href="/#contact-me" className="text-gray-600 hover:text-gray-900 flex items-center">
+                    {/* Pastikan Link ini mengarah ke bagian yang benar di halaman utama Anda */}
+                    <Link href="/#connect-me" className="text-gray-600 hover:text-gray-900 flex items-center">
                         <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
                         Back to Contact Section
                     </Link>
@@ -94,7 +102,7 @@ const ConnectMe: React.FC = () => {
                                 <input
                                     type="text"
                                     id="name"
-                                    name="name"
+                                    name="name" // Pastikan name atribut ada dan sesuai dengan state
                                     value={formData.name}
                                     onChange={handleChange}
                                     className="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-gray-500"
@@ -109,7 +117,7 @@ const ConnectMe: React.FC = () => {
                                 <input
                                     type="email"
                                     id="email"
-                                    name="email"
+                                    name="email" // Pastikan name atribut ada dan sesuai dengan state
                                     value={formData.email}
                                     onChange={handleChange}
                                     className="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-gray-500"
@@ -124,7 +132,7 @@ const ConnectMe: React.FC = () => {
                                 <input
                                     type="text"
                                     id="subject"
-                                    name="subject"
+                                    name="subject" // Pastikan name atribut ada dan sesuai dengan state
                                     value={formData.subject}
                                     onChange={handleChange}
                                     className="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-gray-500"
@@ -138,7 +146,7 @@ const ConnectMe: React.FC = () => {
                                 </label>
                                 <textarea
                                     id="message"
-                                    name="message"
+                                    name="message" // Pastikan name atribut ada dan sesuai dengan state
                                     rows={6}
                                     value={formData.message}
                                     onChange={handleChange}
@@ -149,15 +157,15 @@ const ConnectMe: React.FC = () => {
                             </div>
                             <button
                                 type="submit"
-                                disabled={isSubmitting} // Disable tombol saat sedang mengirim
+                                disabled={isSubmitting}
                                 className={`bg-gray-600 text-white px-8 py-3 rounded-lg text-lg font-semibold shadow-md
                                 hover:bg-gray-700 transition-colors duration-300 ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
                             >
-                                {isSubmitting ? 'Sending...' : 'Send Message'}
+                                {isSubmitting ? 'Opening Email Client...' : 'Send Message'}
                             </button>
                             {/* =========================Pesan feedback pengiriman========================= */}
                             {submitMessage && (
-                                <p className={`mt-4 text-center ${submitMessage.includes('Failed') || submitMessage.includes('error') ? 'text-red-600' : 'text-green-600'}`}>
+                                <p className={`mt-4 text-center text-yellow-600`}> {/* Mengubah warna pesan feedback */}
                                     {submitMessage}
                                 </p>
                             )}
@@ -188,6 +196,10 @@ const ConnectMe: React.FC = () => {
                             <div className="pt-8">
                                 <h3 className="text-xl font-semibold text-gray-900 mb-4">Find Me On</h3>
                                 <div className="flex space-x-6">
+                                    {/* Jika Anda sebelumnya menggunakan Image dari next/image untuk ikon sosial,
+                                        Anda perlu mengimpornya kembali. Jika ini adalah SVG inline, itu baik-baik saja.
+                                        Saya mengasumsikan Anda menggunakan SVG inline atau menghapus import Image jika tidak digunakan.
+                                    */}
                                     <a href="https://www.facebook.com/risal.agosteen" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-gray-600 hover:text-gray-800 transition-colors duration-200">
                                         <svg className="w-8 h-8 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14 13.5h2.5l1-4H14V6.5c0-1.54 0.5-2.5 2.75-2.5H19V0h-3.5C11.95 0 10 1.94 10 5.24V8.5H7v4h3v8h4v-7.5z" /></svg>
                                     </a>
