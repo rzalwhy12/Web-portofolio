@@ -4,7 +4,8 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import ThemeToggleButton from './ThemeToggleButton'; // Import tombol tema
+import ThemeToggleButton from './ThemeToggleButton'; 
+import { Menu, X } from 'lucide-react';
 
 
 
@@ -109,30 +110,63 @@ const Navbar = () => {
             )}
 
             {/* Mobile Menu Sidebar */}
-            <div
-                className={`fixed top-0 right-0 h-full bg-white dark:bg-gray-800 w-64 shadow-lg z-50 transform transition-transform duration-300 ease-in-out
-                ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}
+                        <div
+                className={`fixed top-0 right-0 h-full w-64 shadow-xl z-50 transform transition-transform duration-300 ease-in-out
+                ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}
+                bg-white dark:bg-gray-900`}
             >
-                <button className="absolute top-5 right-5 p-2 text-gray-700 dark:text-gray-200" onClick={toggleMenu} aria-label="Close menu">
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                </button>
-                <nav className="flex flex-col p-8 pt-20">
-                    <Link href={getLinkHref('home')} className="py-3 text-lg font-medium text-gray-800 dark:text-gray-200 hover:text-purple-600 dark:hover:text-purple-400 transition duration-150 ease-in-out" onClick={toggleMenu}>Home</Link>
-                    <Link href={getLinkHref('about-me-detailed')} className="py-3 text-lg font-medium text-gray-800 dark:text-gray-200 hover:text-purple-600 dark:hover:text-purple-400 transition duration-150 ease-in-out" onClick={toggleMenu}>About Me</Link>
-                    <Link href={getLinkHref('portfolio')} className="py-3 text-lg font-medium text-gray-800 dark:text-gray-200 hover:text-purple-600 dark:hover:text-purple-400 transition duration-150 ease-in-out" onClick={toggleMenu}>Portfolio</Link>
-                    <Link href={getLinkHref('client-testimonial')} className="py-3 text-lg font-medium text-gray-800 dark:text-gray-200 hover:text-purple-600 dark:hover:text-purple-400 transition duration-150 ease-in-out" onClick={toggleMenu}>Testimonial</Link>
-                    <Link href={getLinkHref('contact-me')} className="py-3 text-lg font-medium text-gray-800 dark:text-gray-200 hover:text-purple-600 dark:hover:text-purple-400 transition duration-150 ease-in-out" onClick={toggleMenu}>Contact Me</Link>
+                <div className="flex justify-end p-6"> {/* Kontainer untuk tombol close */}
+                    <button className="p-2 text-gray-700 dark:text-gray-200 hover:text-red-500 dark:hover:text-red-400 transition-colors duration-200" onClick={toggleMenu} aria-label="Close menu">
+                        <X className="w-7 h-7" /> {/* Ikon X lebih besar sedikit */}
+                    </button>
+                </div>
+                <nav className="flex flex-col px-6 pb-6 space-y-2"> {/* Kurangi padding atas, gunakan space-y untuk jarak antar link */}
+                    <Link
+                        href={getLinkHref('home')}
+                        className="py-3 px-4 text-xl font-semibold text-gray-800 dark:text-gray-200 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition duration-150 ease-in-out"
+                        onClick={toggleMenu}
+                    >
+                        Home
+                    </Link>
+                    <Link
+                        href={getLinkHref('about-me-detailed')}
+                        className="py-3 px-4 text-xl font-semibold text-gray-800 dark:text-gray-200 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition duration-150 ease-in-out"
+                        onClick={toggleMenu}
+                    >
+                        About Me
+                    </Link>
+                    <Link
+                        href={getLinkHref('portfolio')}
+                        className="py-3 px-4 text-xl font-semibold text-gray-800 dark:text-gray-200 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition duration-150 ease-in-out"
+                        onClick={toggleMenu}
+                    >
+                        Portfolio
+                    </Link>
+                    <Link
+                        href={getLinkHref('client-testimonial')}
+                        className="py-3 px-4 text-xl font-semibold text-gray-800 dark:text-gray-200 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition duration-150 ease-in-out"
+                        onClick={toggleMenu}
+                    >
+                        Testimonial
+                    </Link>
+                    <Link
+                        href={getLinkHref('contact-me')}
+                        className="py-3 px-4 text-xl font-semibold text-gray-800 dark:text-gray-200 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition duration-150 ease-in-out"
+                        onClick={toggleMenu}
+                    >
+                        Contact Me
+                    </Link>
                     <a
                         href="https://drive.google.com/file/d/12pUzNsMKjiJThkEx0G22i-MIEuB554jl/view?usp=sharing"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="py-3 text-lg font-medium text-gray-800 dark:text-gray-200 hover:text-purple-600 dark:hover:text-purple-400 transition duration-150 ease-in-out"
+                        className="py-3 px-4 text-xl font-semibold text-gray-800 dark:text-gray-200 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition duration-150 ease-in-out"
                         onClick={toggleMenu}
                     >
                         My CV
                     </a>
                     {/* Tombol Dark Mode (Mobile) - di dalam sidebar */}
-                    <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+                    <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700 flex justify-center"> {/* Posisikan di tengah */}
                         <ThemeToggleButton />
                     </div>
                 </nav>
