@@ -4,6 +4,7 @@ import React from 'react';
 import FacebookIcon from '../assets/images/facebook.svg';
 import LinkedInIcon from '../assets/images/linkedin-logo.svg';
 import BehanceIcon from '../assets/images/behance.svg';
+import Image from 'next/image';
 
 const ConnectMe: React.FC = () => {
     return (
@@ -100,13 +101,13 @@ const ConnectMe: React.FC = () => {
                     <p className="mb-4 sm:mb-0">© 2025 Rzal Portofolio Website</p>
                     <div className="flex space-x-6">
                         <a href="https://www.facebook.com/risal.agosteen" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="hover:opacity-75 transition-opacity duration-200">
-                            < img src={FacebookIcon.src} alt="Facebook" width={24} height={24} className="w-6 h-6" />
+                            < Image src={FacebookIcon.src} alt="Facebook" width={24} height={24} className="w-6 h-6" />
                         </a>
                         <a href="https://www.linkedin.com/in/risal-wahyu-agustin-6547b5362/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="hover:opacity-75 transition-opacity duration-200">
-                            <img src={LinkedInIcon.src} alt="LinkedIn" width={24} height={24} className="w-6 h-6" />
+                            <Image src={LinkedInIcon.src} alt="LinkedIn" width={24} height={24} className="w-6 h-6" />
                         </a>
                         <a href="https://www.behance.net/risalagustin" target="_blank" rel="noopener noreferrer" aria-label="Behance" className="hover:opacity-75 transition-opacity duration-200">
-                            <img src={BehanceIcon.src} alt="Behance" width={24} height={24} className="w-6 h-6" />
+                            <Image src={BehanceIcon.src} alt="Behance" width={24} height={24} className="w-6 h-6" />
                         </a>
                         <a href="https://x.com/RisalWahyu11493" target="_blank" rel="noopener noreferrer" aria-label="Twitter" className="text-gray-400 hover:text-gray-600 transition-colors duration-200">
                             <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-6.793-8.983L5.418 21.75H1.49L9.35 12.81 1.01 2.25h8.29L12 9.313 18.244 2.25zm-2.43 14.887l.867.754h3.084l-4.24-3.665-2.478 3.298zm-9.357-11.23L4.17 3.526h-3.084l4.24 3.665L9.357 5.25z" /></svg>

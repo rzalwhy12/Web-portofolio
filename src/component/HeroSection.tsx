@@ -9,7 +9,7 @@ import FacebookIcon from '../assets/images/facebook.svg';
 import LinkedInIcon from '../assets/images/linkedin-logo.svg';
 import BehanceIcon from '../assets/images/behance.svg';
 import ArrowDownIcon from '../assets/images/Scroll.svg';
-import meImage from '../assets/images/me.jpg';
+import meImage from '../assets/images/me.webp';
 
 const HeroSection: React.FC = () => {
 
