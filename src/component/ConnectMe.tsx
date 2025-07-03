@@ -1,14 +1,60 @@
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react';
 import FacebookIcon from '../assets/images/facebook.svg';
 import LinkedInIcon from '../assets/images/linkedin-logo.svg';
 import BehanceIcon from '../assets/images/behance.svg';
 import Image from 'next/image';
 
 const ConnectMe: React.FC = () => {
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        budget: '', // Optional
+        description: '',
+    });
+    const [statusMessage, setStatusMessage] = useState<string | null>(null);
+    const [isSubmitting, setIsSubmitting] = useState<boolean>(false); // Tetap gunakan ini untuk UI feedback
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { id, value } = e.target;
+        setFormData(prevData => ({
+            ...prevData,
+            [id]: value,
+        }));
+    };
+
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault(); // Mencegah reload halaman
+        setIsSubmitting(true);
+        setStatusMessage(null);
+
+        const recipientEmail = 'rzalcorp05@gmail.com';
+        const subject = encodeURIComponent(`Pesan dari Portofolio: ${formData.name}`);
+        const body = encodeURIComponent(
+            `Nama: ${formData.name}\n` +
+            `Email: ${formData.email}\n` +
+            `Budget (Opsional): ${formData.budget || 'Tidak disebutkan'}\n\n` +
+            `Deskripsi Proyek:\n${formData.description}`
+        );
+
+        // Buat URL mailto:
+        const mailtoLink = `mailto:${recipientEmail}?subject=${subject}&body=${body}`;
+
+        // Buka aplikasi email default pengguna
+        window.location.href = mailtoLink;
+
+        // Berikan feedback kepada pengguna setelah mencoba membuka aplikasi email
+        // Tidak ada cara pasti untuk mengetahui apakah email benar-benar terkirim
+        // karena tergantung pada aksi pengguna di aplikasi email.
+        setTimeout(() => {
+            setIsSubmitting(false);
+            setStatusMessage('Aplikasi email Anda telah dibuka. Harap periksa dan klik "Kirim" untuk menyelesaikan.');
+            setFormData({ name: '', email: '', budget: '', description: '' }); // Bersihkan form
+        }, 1000); // Beri sedikit delay untuk UI feedback
+    };
+
     return (
-        // ==================Bagian Utama Hubungi Saya====================
         <section id="connect-me" className="py-20 md:py-24 bg-white">
             <div className="container mx-auto px-4 text-center">
                 <h2 className="text-4xl md:text-5xl font-bold mb-16 text-gray-900">
@@ -16,7 +62,6 @@ const ConnectMe: React.FC = () => {
                 </h2>
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 text-left items-start">
-                    {/* ==================Bagian Kiri: Pesan & Info Kontak==================== */}
                     <div>
                         <p className="text-3xl md:text-4xl leading-relaxed text-gray-700 mb-10 md:mb-16">
                             Let&apos;s make something new, different and more meaningful or
@@ -39,15 +84,17 @@ const ConnectMe: React.FC = () => {
                         </div>
                     </div>
 
-                    {/* ==================Bagian Kanan: Formulir Kontak==================== */}
                     <div className="bg-gray-800 p-8 md:p-12 rounded-lg shadow-xl w-full">
-                        <form className="space-y-6">
+                        <form onSubmit={handleSubmit} className="space-y-6">
                             <div>
                                 <label htmlFor="name" className="sr-only">Your name</label>
                                 <input
                                     type="text"
                                     id="name"
                                     placeholder="Your name"
+                                    value={formData.name}
+                                    onChange={handleChange}
+                                    required
                                     className="w-full bg-transparent border-b border-gray-600 text-white py-3 px-0
                                             focus:outline-none focus:border-purple-500 transition-colors duration-200 placeholder-gray-400"
                                 />
@@ -58,6 +105,9 @@ const ConnectMe: React.FC = () => {
                                     type="email"
                                     id="email"
                                     placeholder="Your email Address"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    required
                                     className="w-full bg-transparent border-b border-gray-600 text-white py-3 px-0
                                             focus:outline-none focus:border-purple-500 transition-colors duration-200 placeholder-gray-400"
                                 />
@@ -68,6 +118,8 @@ const ConnectMe: React.FC = () => {
                                     type="text"
                                     id="budget"
                                     placeholder="Your budget (Optional)"
+                                    value={formData.budget}
+                                    onChange={handleChange}
                                     className="w-full bg-transparent border-b border-gray-600 text-white py-3 px-0
                                             focus:outline-none focus:border-purple-500 transition-colors duration-200 placeholder-gray-400"
                                 />
@@ -78,30 +130,40 @@ const ConnectMe: React.FC = () => {
                                     id="description"
                                     placeholder="Your project description"
                                     rows={4}
+                                    value={formData.description}
+                                    onChange={handleChange}
+                                    required
                                     className="w-full bg-transparent border-b border-gray-600 text-white py-3 px-0 resize-none
                                             focus:outline-none focus:border-purple-500 transition-colors duration-200 placeholder-gray-400"
                                 ></textarea>
                             </div>
 
+                            {statusMessage && (
+                                <p className="text-center text-yellow-300">
+                                    {statusMessage}
+                                </p>
+                            )}
+
                             <button
                                 type="submit"
+                                disabled={isSubmitting}
                                 className="w-full bg-white text-gray-800 py-3 rounded-lg text-lg font-semibold shadow-md
-                                        hover:bg-gray-200 transition-colors duration-300 transform hover:-translate-y-1"
+                                        hover:bg-gray-200 transition-colors duration-300 transform hover:-translate-y-1
+                                        disabled:opacity-50 disabled:cursor-not-allowed"
                             >
-                                SEND
+                                {isSubmitting ? 'Membuka Email...' : 'SEND'}
                             </button>
                         </form>
                     </div>
                 </div>
             </div>
 
-            {/* ==================Bagian Footer==================== */}
             <footer className="mt-20 md:mt-32 pt-8 md:pt-12 border-t border-gray-200">
                 <div className="container mx-auto px-4 flex flex-col sm:flex-row items-center justify-between text-gray-600 text-sm">
                     <p className="mb-4 sm:mb-0">© 2025 Rzal Portofolio Website</p>
                     <div className="flex space-x-6">
                         <a href="https://www.facebook.com/risal.agosteen" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="hover:opacity-75 transition-opacity duration-200">
-                            < Image src={FacebookIcon.src} alt="Facebook" width={24} height={24} className="w-6 h-6" />
+                            <Image src={FacebookIcon.src} alt="Facebook" width={24} height={24} className="w-6 h-6" />
                         </a>
                         <a href="https://www.linkedin.com/in/risal-wahyu-agustin-6547b5362/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="hover:opacity-75 transition-opacity duration-200">
                             <Image src={LinkedInIcon.src} alt="LinkedIn" width={24} height={24} className="w-6 h-6" />
