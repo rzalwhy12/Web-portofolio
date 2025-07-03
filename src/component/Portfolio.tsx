@@ -48,6 +48,7 @@ const Portfolio: React.FC = () => {
         'UI & UX',
         'Graphic Design',
         'Web Development',
+        'Music',
     ];
 
     const handlePageChange = (page: number) => {
@@ -85,7 +86,6 @@ const Portfolio: React.FC = () => {
                 </div>
 
                 {/* Grid Portofolio */}
-                {/* grid-cols-1 untuk mobile, sm:grid-cols-2 untuk tablet, lg:grid-cols-3 untuk desktop */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     {/* Render item paginasi */}
                     {paginatedItems.map((item) => (
@@ -94,7 +94,7 @@ const Portfolio: React.FC = () => {
                             href={item.link || '#'}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="group relative overflow-hidden rounded-lg shadow-lg aspect-w-1 aspect-h-1 block"
+                            className="group relative overflow-hidden rounded-lg shadow-lg aspect-w-16 aspect-h-9 block"
                         >
                             <Image
                                 src={item.imageUrl}
@@ -116,14 +116,11 @@ const Portfolio: React.FC = () => {
                     {placeholdersNeeded > 0 && placeholderArray.map((_, index) => (
                         <div
                             key={`placeholder-${index}`}
-                            // Hidden by default (mobile & tablet)
-                            // block, fully opaque, and interactive only on large screens (desktop)
                             className="relative rounded-lg aspect-w-1 aspect-h-1 hidden
                                         bg-transparent shadow-none opacity-0 pointer-events-none
                                         lg:block lg:opacity-100 lg:pointer-events-auto"
                             style={{ aspectRatio: '16 / 9' }} // Fallback for aspect-ratio
                         >
-                            {/* Konten di dalam placeholder (jika ada, akan tetap transparan) */}
                         </div>
                     ))}
                 </div>
