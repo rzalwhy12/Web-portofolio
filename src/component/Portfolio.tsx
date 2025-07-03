@@ -20,7 +20,7 @@ const portfolioItems: PortfolioItem[] = [
     { id: 7, category: 'UI & UX', imageUrl: 'images/portofolio/id1.jpg', title: 'Finance App UI', link: 'https://www.google.com' },
 ];
 
-const ITEMS_PER_PAGE = 6;
+const ITEMS_PER_PAGE = 6; // Ini adalah jumlah item per halaman yang Anda inginkan untuk mengisi grid
 
 const Portfolio: React.FC = () => {
     const [activeCategory, setActiveCategory] = useState<PortfolioItem['category']>('All');
@@ -28,7 +28,7 @@ const Portfolio: React.FC = () => {
 
     // ===============================Filter item dan reset halaman=============================
     const filteredItems = useMemo(() => {
-        setCurrentPage(1);
+        setCurrentPage(1); // Reset ke halaman 1 setiap kali kategori berubah
         return activeCategory === 'All'
             ? portfolioItems
             : portfolioItems.filter(item => item.category === activeCategory);
@@ -58,6 +58,12 @@ const Portfolio: React.FC = () => {
         }
     };
 
+    // ===============================Logika untuk menambahkan placeholder=============================
+    const numItemsOnCurrentPage = paginatedItems.length;
+    // Hitung berapa banyak placeholder yang dibutuhkan untuk mengisi ITEMS_PER_PAGE
+    const placeholdersNeeded = ITEMS_PER_PAGE - numItemsOnCurrentPage;
+    const placeholderArray = Array.from({ length: placeholdersNeeded }, (_, i) => i);
+
     return (
         <section id="portfolio" className="py-20 bg-gray-50">
             <div className="container mx-auto px-4 text-center">
@@ -81,6 +87,11 @@ const Portfolio: React.FC = () => {
                 </div>
 
                 {/* Grid Portofolio */}
+                {/* Menggunakan `min-h-[calc(600px)]` sebagai contoh, sesuaikan tinggi yang Anda inginkan
+                    dengan mempertimbangkan tinggi 2 baris kartu pada desktop.
+                    Misal: Tinggi kartu + gap (asumsi 300px per kartu + 20px gap = 320px * 2 baris = 640px)
+                    Anda bisa juga menggunakan nilai rem/px yang lebih tepat.
+                */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     {/* ===============================Render item paginasi============================= */}
                     {paginatedItems.map((item) => (
@@ -91,9 +102,14 @@ const Portfolio: React.FC = () => {
                             rel="noopener noreferrer"
                             className="group relative overflow-hidden rounded-lg shadow-lg aspect-w-1 aspect-h-1 block"
                         >
-                            < Image
+                            <Image
                                 src={item.imageUrl}
                                 alt={item.title || item.category}
+                                // width dan height sangat direkomendasikan untuk Next.js Image
+                                // berikan nilai default yang masuk akal atau nilai sebenarnya
+                                // Misalnya, jika gambar Anda 400x400:
+                                width={400}
+                                height={400}
                                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                             />
                             <div className="absolute inset-0 bg-gray-600/40 flex items-end p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -103,6 +119,21 @@ const Portfolio: React.FC = () => {
                                 </div>
                             </div>
                         </a>
+                    ))}
+
+                    {/* ===============================Render placeholder kosong============================= */}
+                    {placeholdersNeeded > 0 && placeholderArray.map((_, index) => (
+                        <div
+                            key={`placeholder-${index}`}
+                            // Tambahkan kelas untuk menjaga ukuran yang sama dengan kartu asli
+                            // Gunakan aspect-w-1 aspect-h-1 jika Anda menggunakan @tailwindcss/aspect-ratio
+                            // atau atur tinggi tetap yang sesuai.
+                            className="relative rounded-lg shadow-lg aspect-w-1 aspect-h-1 block bg-gray-200"
+                            style={{ aspectRatio: '1 / 1' }} // Fallback for aspect-ratio
+                        >
+                            {/* Anda bisa menambahkan teks "Kosong" atau ikon di sini jika mau */}
+                            {/* <p className="text-gray-500 text-center flex items-center justify-center h-full">Slot Kosong</p> */}
+                        </div>
                     ))}
                 </div>
 
