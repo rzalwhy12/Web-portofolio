@@ -13,8 +13,8 @@ interface AboutVideoSectionProps {
 }
 
 const AboutVideoSection: React.FC<AboutVideoSectionProps> = ({
-    videoSrc = "../assets/video/202506260821.mp4",
-    videoPoster = "../assets/images/r7.webp",
+    videoSrc = "video/202506260821.mp4",
+    videoPoster = "images/me.webp",
     loop = false,
     muted = false,
     autoPlay = false,
