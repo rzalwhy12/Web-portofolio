@@ -1,5 +1,6 @@
 "use client"
 import React, { useState, useMemo } from 'react';
+import Image from 'next/image';
 
 interface PortfolioItem {
     id: number;
@@ -90,7 +91,7 @@ const Portfolio: React.FC = () => {
                             rel="noopener noreferrer"
                             className="group relative overflow-hidden rounded-lg shadow-lg aspect-w-1 aspect-h-1 block"
                         >
-                            <img
+                            < Image
                                 src={item.imageUrl}
                                 alt={item.title || item.category}
                                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"

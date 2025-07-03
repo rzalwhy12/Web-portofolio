@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import PersonImg from '../assets/images/Col-block.png'; // Pastikan path ini benar
-import PersonImg2 from '../assets/images/r7.jpg';
+import PersonImg2 from '../assets/images/r7.webp';
 
 // ==================Data Testimonial====================
 const testimonials = [
