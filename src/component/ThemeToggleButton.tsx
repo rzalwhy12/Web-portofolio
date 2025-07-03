@@ -3,7 +3,7 @@
 
 import React, { useContext } from 'react';
 import { Moon, Sun } from "lucide-react";
-import { ThemeContext } from "@/contexts/ThemeContext";
+import { ThemeContext } from "../contexts/ThemeContext";
 import { Button } from './ui/button';
 
 function ThemeToggleButton() {
