@@ -2,12 +2,6 @@
 "use client"; // Tambahkan ini karena Link dan interaksi lainnya menjadikan ini Client Component
 
 import React from 'react';
-import Image from 'next/image'; // Gunakan Image dari next/image untuk optimasi
-
-// Import SVG images
-import FacebookIcon from '../assets/images/facebook.svg';
-import LinkedInIcon from '../assets/images/linkedin-logo.svg';
-import BehanceIcon from '../assets/images/behance.svg';
 import Link from 'next/link';
 
 const ContactMe: React.FC = () => {

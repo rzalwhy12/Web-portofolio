@@ -5,9 +5,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 // ==================Import Gambar (tetap diperlukan untuk HeroSection)====================
-import FacebookIcon from '../assets/images/facebook.svg';
-import LinkedInIcon from '../assets/images/linkedin-logo.svg';
-import BehanceIcon from '../assets/images/behance.svg';
 import ArrowDownIcon from '../assets/images/Scroll.svg';
 import meImage from '../assets/images/me.webp';
 

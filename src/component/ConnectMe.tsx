@@ -1,10 +1,6 @@
 "use client";
 
 import React, { useState } from 'react';
-import FacebookIcon from '../assets/images/facebook.svg';
-import LinkedInIcon from '../assets/images/linkedin-logo.svg';
-import BehanceIcon from '../assets/images/behance.svg';
-import Image from 'next/image';
 
 const ConnectMe: React.FC = () => {
     const [formData, setFormData] = useState({
