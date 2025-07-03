@@ -3,16 +3,49 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 // ==================Import Gambar (tetap diperlukan untuk HeroSection)====================
 import ArrowDownIcon from '../assets/images/Scroll.svg';
 import meImage from '../assets/images/me.webp';
 
+
+const pathname = usePathname();
+const router = useRouter();
+
+const getLinkHref = (sectionId: string) => {
+    return pathname === '/' ? `#${sectionId}` : `/#${sectionId}`;
+};
+
+const handleScrollToSection = async (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string, path: string = '/') => {
+    e.preventDefault();
+    if (pathname !== path) {
+        await router.push(path);
+        // Beri sedikit waktu untuk halaman dimuat sebelum mencoba scroll
+        setTimeout(() => {
+            const targetElement = document.getElementById(sectionId);
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start',
+                });
+            }
+        }, 100);
+    } else {
+        const targetElement = document.getElementById(sectionId);
+        if (targetElement) {
+            targetElement.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start',
+            });
+        }
+    }
+};
+
 const HeroSection: React.FC = () => {
 
     return (
-        // Latar belakang utama: abu-abu terang di light mode, hitam di dark mode
-        // Teks utama: abu-abu gelap di light mode, abu-abu terang di dark mode
         <div className="dark:bg-gray-900 bg-gray-50 text-gray-800 dark:text-gray-200 min-h-screen relative pb-20">
 
             {/* ==================Konten Utama Hero Section==================== */}
@@ -32,9 +65,6 @@ const HeroSection: React.FC = () => {
                         href="https://drive.google.com/file/d/12pUzNsMKjiJThkEx0G22i-MIEuB554jl/view?usp=sharing"
                         target="_blank"
                         rel="noopener noreferrer"
-                        // Latar belakang tombol: abu-abu gelap di light mode, ungu di dark mode
-                        // Teks tombol: putih di light mode, putih di dark mode
-                        // Hover: abu-abu gelap di light mode, ungu-700 di dark mode
                         className="inline-block bg-gray-400 text-white px-8 py-3 rounded-md text-lg font-medium hover:bg-gray-500 transition duration-300 ease-in-out dark:bg-purple-600 dark:hover:bg-purple-700 mb-8"
                     >
                         View my-CV
@@ -42,7 +72,7 @@ const HeroSection: React.FC = () => {
 
                     {/* ==================Ikon Media Sosial==================== */}
                     <div className="flex justify-center lg:justify-start gap-5 mb-12">
-                        
+
                         <a href="https://www.facebook.com/risal.agosteen" target="_blank" rel="noopener noreferrer" aria-label="Facebook"
                             className="text-gray-600 hover:text-gray-800 transition-colors duration-200
                                 dark:text-gray-400 dark:hover:text-white">
@@ -81,9 +111,8 @@ const HeroSection: React.FC = () => {
 
             {/* ==================Indikator Scroll Down==================== */}
             <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center text-sm text-gray-500 dark:text-gray-400">
-                <Link href="#about-me-detailed">
-                    {/* Ikon ArrowDownIcon, jika ini SVG yang bisa diwarnai dengan text-color, bisa pakai dark:text-color */}
-                    {/* Atau jika Anda ingin efek invert: dark:filter dark:invert */}
+                <Link href={getLinkHref('about-me-detailed')}
+                    onClick={(e) => handleScrollToSection(e, 'about-me-detailed')} >
                     <Image src={ArrowDownIcon} alt="Scroll Down" width={70} height={70} className="mt-2.5 cursor-pointer dark:filter dark:invert" />
                 </Link>
             </div>
