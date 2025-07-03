@@ -28,7 +28,7 @@ const AboutMe: React.FC = () => {
                     <div>
                         <h3 className="text-3xl font-bold text-gray-900 mb-6">Get to know me!</h3>
                         <p className="text-base leading-relaxed text-gray-700 mb-4">
-                            I'm a <span className="font-semibold text-gray-600">Frontend Focused Web Developer</span> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequuntur dicta obcaecati neque totam nemo repellendus consequatur nesciunt minima quibusdam, incidunt distinctio eaque ab vel laborum, officia iusto ad facere quod! <a href="#portfolio-section" className="text-gray-600 hover:underline font-semibold">Projects</a> section.
+                            I&apos;m a <span className="font-semibold text-gray-600">Frontend Focused Web Developer</span> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequuntur dicta obcaecati neque totam nemo repellendus consequatur nesciunt minima quibusdam, incidunt distinctio eaque ab vel laborum, officia iusto ad facere quod! <a href="#portfolio-section" className="text-gray-600 hover:underline font-semibold">Projects</a> section.
                         </p>
 
                         {/* ==================Nilai-nilai Saya==================== */}

@@ -14,7 +14,6 @@ interface ServiceCardProps {
 const ServiceCard: React.FC<ServiceCardProps> = ({ 
     title, 
     description, 
-    isDark = false, // Beri nilai default
     linkHref = '#' 
 }) => {
     return (

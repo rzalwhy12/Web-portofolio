@@ -8,7 +8,6 @@ import Image from 'next/image'; // Gunakan Image dari next/image untuk optimasi
 import FacebookIcon from '../assets/images/facebook.svg';
 import LinkedInIcon from '../assets/images/linkedin-logo.svg';
 import BehanceIcon from '../assets/images/behance.svg';
-import TwitterIcon from '../assets/images/twitter.svg'; // Pastikan ini juga SVG jika ingin dikontrol dengan fill-current/dark:invert
 import Link from 'next/link';
 
 const ContactMe: React.FC = () => {

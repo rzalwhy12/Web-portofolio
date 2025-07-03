@@ -4,7 +4,6 @@ import React from 'react';
 import FacebookIcon from '../assets/images/facebook.svg';
 import LinkedInIcon from '../assets/images/linkedin-logo.svg';
 import BehanceIcon from '../assets/images/behance.svg';
-import TwitterIcon from '../assets/images/twitter.svg';
 
 const ConnectMe: React.FC = () => {
     return (
@@ -19,7 +18,7 @@ const ConnectMe: React.FC = () => {
                     {/* ==================Bagian Kiri: Pesan & Info Kontak==================== */}
                     <div>
                         <p className="text-3xl md:text-4xl leading-relaxed text-gray-700 mb-10 md:mb-16">
-                            Let's make something new, different and more meaningful or
+                            Let&apos;s make something new, different and more meaningful or
                             make thing more visual or conceptual? Just say hello!
                         </p>
 
@@ -101,7 +100,7 @@ const ConnectMe: React.FC = () => {
                     <p className="mb-4 sm:mb-0">© 2025 Rzal Portofolio Website</p>
                     <div className="flex space-x-6">
                         <a href="https://www.facebook.com/risal.agosteen" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="hover:opacity-75 transition-opacity duration-200">
-                            <img src={FacebookIcon.src} alt="Facebook" width={24} height={24} className="w-6 h-6" />
+                            < img src={FacebookIcon.src} alt="Facebook" width={24} height={24} className="w-6 h-6" />
                         </a>
                         <a href="https://www.linkedin.com/in/risal-wahyu-agustin-6547b5362/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="hover:opacity-75 transition-opacity duration-200">
                             <img src={LinkedInIcon.src} alt="LinkedIn" width={24} height={24} className="w-6 h-6" />

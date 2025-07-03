@@ -6,11 +6,9 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import ThemeToggleButton from './ThemeToggleButton'; // Import tombol tema
 
-interface NavbarProps {
-    //
-}
 
-const Navbar: React.FC<NavbarProps> = () => {
+
+const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isNavbarHovered, setIsNavbarHovered] = useState(false);
     const pathname = usePathname();

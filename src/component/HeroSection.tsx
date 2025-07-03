@@ -8,7 +8,6 @@ import Link from 'next/link';
 import FacebookIcon from '../assets/images/facebook.svg';
 import LinkedInIcon from '../assets/images/linkedin-logo.svg';
 import BehanceIcon from '../assets/images/behance.svg';
-import TwitterIcon from '../assets/images/twitter.svg';
 import ArrowDownIcon from '../assets/images/Scroll.svg';
 import meImage from '../assets/images/me.jpg';
 
@@ -21,9 +20,9 @@ const HeroSection: React.FC = () => {
             <main id="home" className="flex flex-col lg:flex-row justify-center items-center py-20 px-4 lg:px-20 gap-12 lg:gap-24 pt-40">
                 <div className="hero-content max-w-lg text-center lg:text-left">
                     <p className="text-lg text-gray-500 mb-1">— Hello</p>
-                    <h1 className="text-5xl lg:text-6xl font-bold mb-5 leading-tight">I'm Risal Wahyu Agustin</h1>
-                    <p className="text-xl lg:text-2xl font-medium mb-5 leading-relaxed">A "Full-Stack Web Developer" </p>
-                    <p className="text-base text-gray-600 leading-relaxed mb-10">Of course, there's so much more to me than just a few fancy titles. Scroll down and get to know me.</p>
+                    <h1 className="text-5xl lg:text-6xl font-bold mb-5 leading-tight">I&apos;m Risal Wahyu Agustin</h1>
+                    <p className="text-xl lg:text-2xl font-medium mb-5 leading-relaxed">A &quot;Full-Stack Web Developer&quot; </p>
+                    <p className="text-base text-gray-600 leading-relaxed mb-10">Of course, there&apos;s so much more to me than just a few fancy titles. Scroll down and get to know me.</p>
 
                     {/* ==================Tombol Call-to-Action (CTA)==================== */}
                     <a
