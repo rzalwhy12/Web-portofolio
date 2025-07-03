@@ -26,14 +26,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <ThemeProvider>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white text-gray-900 dark:bg-black dark:text-gray-100 transition-colors duration-300`}
       >
-        <ThemeProvider>
+        
           <Navbar />
           {children}
-        </ThemeProvider>
       </body>
+      </ThemeProvider>
     </html>
   );
 }
