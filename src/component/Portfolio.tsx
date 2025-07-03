@@ -19,6 +19,7 @@ const portfolioItems: PortfolioItem[] = [
     { id: 5, category: 'UI & UX', imageUrl: 'images/portofolio/uiux1.png', title: 'ToDo App Desain', link: 'https://www.google.com' },
     { id: 6, category: 'Web Development', imageUrl: 'images/portofolio/todo.png', title: 'ToDo App ', link: 'https://www.google.com' },
     { id: 7, category: 'UI & UX', imageUrl: 'images/portofolio/id1.jpg', title: 'Finance App UI', link: 'https://www.google.com' },
+    { id: 10, category: 'All', imageUrl: 'images/portofolio/poto.png', title: 'Sama Salma', link: 'https://www.google.com' },
 ];
 
 const ITEMS_PER_PAGE = 6; // Ini adalah jumlah item per halaman yang Anda inginkan untuk mengisi grid
@@ -57,6 +58,7 @@ const Portfolio: React.FC = () => {
 
     // Logika untuk menambahkan placeholder
     const numItemsOnCurrentPage = paginatedItems.length;
+    // placeholder hanya relevan untuk mengisi grid desktop (lg:grid-cols-3)
     const placeholdersNeeded = ITEMS_PER_PAGE - numItemsOnCurrentPage;
     const placeholderArray = Array.from({ length: placeholdersNeeded }, (_, i) => i);
 
@@ -83,6 +85,7 @@ const Portfolio: React.FC = () => {
                 </div>
 
                 {/* Grid Portofolio */}
+                {/* grid-cols-1 untuk mobile, sm:grid-cols-2 untuk tablet, lg:grid-cols-3 untuk desktop */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     {/* Render item paginasi */}
                     {paginatedItems.map((item) => (
@@ -113,9 +116,11 @@ const Portfolio: React.FC = () => {
                     {placeholdersNeeded > 0 && placeholderArray.map((_, index) => (
                         <div
                             key={`placeholder-${index}`}
-                            className="relative rounded-lg aspect-w-1 aspect-h-1 block
+                            // Hidden by default (mobile & tablet)
+                            // block, fully opaque, and interactive only on large screens (desktop)
+                            className="relative rounded-lg aspect-w-1 aspect-h-1 hidden
                                         bg-transparent shadow-none opacity-0 pointer-events-none
-                                        lg:block lg:opacity-100 lg:pointer-events-auto" // Hanya muncul dan interaktif di lg (desktop)
+                                        lg:block lg:opacity-100 lg:pointer-events-auto"
                             style={{ aspectRatio: '16 / 9' }} // Fallback for aspect-ratio
                         >
                             {/* Konten di dalam placeholder (jika ada, akan tetap transparan) */}
@@ -123,7 +128,7 @@ const Portfolio: React.FC = () => {
                     ))}
                 </div>
 
-                {/* Pagination dan Navigasi */}
+                {/* Pagination dan Navigasi - Hanya muncul jika ada lebih dari ITEMS_PER_PAGE item */}
                 {filteredItems.length > ITEMS_PER_PAGE && (
                     <div className="flex justify-center items-center mt-12 space-x-4 md:space-x-10">
                         <div className="flex space-x-2">
