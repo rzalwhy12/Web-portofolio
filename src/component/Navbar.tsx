@@ -61,11 +61,11 @@ const Navbar = () => {
                     <div className="flex items-center space-x-6 lg:space-x-10">
                         {/* Navigasi Utama (Desktop) */}
                         <nav className="hidden md:flex space-x-6 lg:space-x-10 text-base lg:text-lg font-medium">
-                            <Link href={getLinkHref('home')} className="hover:text-yellow-900 dark:hover:text-yellow-400 whitespace-nowrap">Home</Link>
-                            <Link href={getLinkHref('about-me-detailed')} className="hover:text-yellow-900 dark:hover:text-yellow-400 whitespace-nowrap">About Me</Link>
-                            <Link href={getLinkHref('portfolio')} className="hover:text-yellow-900 dark:hover:text-yellow-400 whitespace-nowrap">Portfolio</Link>
-                            <Link href={getLinkHref('client-testimonial')} className="hover:text-yellow-900 dark:hover:text-yellow-400 whitespace-nowrap">Testimonial</Link>
-                            <Link href={getLinkHref('contact-me')} className="hover:text-yellow-900 dark:hover:text-yellow-400 whitespace-nowrap">Contact</Link>
+                            <Link href={getLinkHref('home')} className="hover:text-purple-700 dark:hover:text-yellow-400 whitespace-nowrap">Home</Link>
+                            <Link href={getLinkHref('about-me-detailed')} className="hover:text-purple-700 dark:hover:text-yellow-400 whitespace-nowrap">About Me</Link>
+                            <Link href={getLinkHref('portfolio')} className="hover:text-purple-700 dark:hover:text-yellow-400 whitespace-nowrap">Portfolio</Link>
+                            <Link href={getLinkHref('client-testimonial')} className="hover:text-purple-700 dark:hover:text-yellow-400 whitespace-nowrap">Testimonial</Link>
+                            <Link href={getLinkHref('contact-me')} className="hover:text-purple-700 dark:hover:text-yellow-400 whitespace-nowrap">Contact</Link>
                         </nav>
 
                         {/* Tombol Dark Mode (Desktop) - hanya terlihat saat navbar di-hover */}
