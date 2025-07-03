@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import ThemeToggleButton from './ThemeToggleButton'; 
-import { Menu, X } from 'lucide-react';
+import { X } from 'lucide-react';
 
 
 
@@ -115,12 +115,12 @@ const Navbar = () => {
                 ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}
                 bg-white dark:bg-gray-900`}
             >
-                <div className="flex justify-end p-6"> {/* Kontainer untuk tombol close */}
+                <div className="flex justify-end p-6"> 
                     <button className="p-2 text-gray-700 dark:text-gray-200 hover:text-red-500 dark:hover:text-red-400 transition-colors duration-200" onClick={toggleMenu} aria-label="Close menu">
-                        <X className="w-7 h-7" /> {/* Ikon X lebih besar sedikit */}
+                        <X className="w-7 h-7" /> 
                     </button>
                 </div>
-                <nav className="flex flex-col px-6 pb-6 space-y-2"> {/* Kurangi padding atas, gunakan space-y untuk jarak antar link */}
+                <nav className="flex flex-col px-6 pb-6 space-y-2"> 
                     <Link
                         href={getLinkHref('home')}
                         className="py-3 px-4 text-xl font-semibold text-gray-800 dark:text-gray-200 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition duration-150 ease-in-out"
