@@ -41,12 +41,12 @@ const AboutVideoSection: React.FC<AboutVideoSectionProps> = ({
                 >
                     <source src={videoSrc} type="video/mp4" />
                     <source src={videoSourceWebM} type="video/webm" />
-                    Maaf, browser Anda tidak mendukung video HTML5.
+                    Sorry , your browser not support video HTML5.
                 </video>
             </div>
             <p className="mt-8 text-lg text-gray-600 text-center max-w-2xl">
-                Video ini memberikan gambaran singkat tentang saya dan apa yang saya tawarkan.
-                Jangan ragu untuk menghubungi saya jika Anda memiliki pertanyaan!
+                This video offers a brief overview of who I am and what I offer. 
+                Feel free to contact me if you have any questions!
             </p>
         </section>
     );
