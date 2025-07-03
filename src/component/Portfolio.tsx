@@ -109,7 +109,7 @@ const Portfolio: React.FC = () => {
                                 // berikan nilai default yang masuk akal atau nilai sebenarnya
                                 // Misalnya, jika gambar Anda 400x400:
                                 width={400}
-                                height={400}
+                                height={800}
                                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                             />
                             <div className="absolute inset-0 bg-gray-600/40 flex items-end p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
