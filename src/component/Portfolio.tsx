@@ -1,4 +1,5 @@
-"use client"
+'use client';
+
 import React, { useState, useMemo } from 'react';
 import Image from 'next/image';
 
@@ -26,7 +27,6 @@ const Portfolio: React.FC = () => {
     const [activeCategory, setActiveCategory] = useState<PortfolioItem['category']>('All');
     const [currentPage, setCurrentPage] = useState(1);
 
-    // ===============================Filter item dan reset halaman=============================
     const filteredItems = useMemo(() => {
         setCurrentPage(1); // Reset ke halaman 1 setiap kali kategori berubah
         return activeCategory === 'All'
@@ -34,10 +34,8 @@ const Portfolio: React.FC = () => {
             : portfolioItems.filter(item => item.category === activeCategory);
     }, [activeCategory]);
 
-    // ===============================Hitung total halaman=============================
     const totalPages = Math.ceil(filteredItems.length / ITEMS_PER_PAGE);
 
-    // ===============================Dapatkan item untuk halaman saat ini=============================
     const paginatedItems = useMemo(() => {
         const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
         const endIndex = startIndex + ITEMS_PER_PAGE;
@@ -51,16 +49,14 @@ const Portfolio: React.FC = () => {
         'Web Development',
     ];
 
-    // ===============================Fungsi untuk mengganti halaman=============================
     const handlePageChange = (page: number) => {
         if (page >= 1 && page <= totalPages) {
             setCurrentPage(page);
         }
     };
 
-    // ===============================Logika untuk menambahkan placeholder=============================
+    // Logika untuk menambahkan placeholder
     const numItemsOnCurrentPage = paginatedItems.length;
-    // Hitung berapa banyak placeholder yang dibutuhkan untuk mengisi ITEMS_PER_PAGE
     const placeholdersNeeded = ITEMS_PER_PAGE - numItemsOnCurrentPage;
     const placeholderArray = Array.from({ length: placeholdersNeeded }, (_, i) => i);
 
@@ -87,13 +83,8 @@ const Portfolio: React.FC = () => {
                 </div>
 
                 {/* Grid Portofolio */}
-                {/* Menggunakan `min-h-[calc(600px)]` sebagai contoh, sesuaikan tinggi yang Anda inginkan
-                    dengan mempertimbangkan tinggi 2 baris kartu pada desktop.
-                    Misal: Tinggi kartu + gap (asumsi 300px per kartu + 20px gap = 320px * 2 baris = 640px)
-                    Anda bisa juga menggunakan nilai rem/px yang lebih tepat.
-                */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {/* ===============================Render item paginasi============================= */}
+                    {/* Render item paginasi */}
                     {paginatedItems.map((item) => (
                         <a
                             key={item.id}
@@ -105,9 +96,6 @@ const Portfolio: React.FC = () => {
                             <Image
                                 src={item.imageUrl}
                                 alt={item.title || item.category}
-                                // width dan height sangat direkomendasikan untuk Next.js Image
-                                // berikan nilai default yang masuk akal atau nilai sebenarnya
-                                // Misalnya, jika gambar Anda 400x400:
                                 width={400}
                                 height={800}
                                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
@@ -121,28 +109,24 @@ const Portfolio: React.FC = () => {
                         </a>
                     ))}
 
-                    {/* ===============================Render placeholder kosong============================= */}
+                    {/* Render placeholder kosong */}
                     {placeholdersNeeded > 0 && placeholderArray.map((_, index) => (
                         <div
                             key={`placeholder-${index}`}
-                            // Tambahkan kelas untuk menjaga ukuran yang sama dengan kartu asli
-                            // Gunakan aspect-w-1 aspect-h-1 jika Anda menggunakan @tailwindcss/aspect-ratio
-                            // atau atur tinggi tetap yang sesuai.
-                            className="relative rounded-lg shadow-lg aspect-w-1 aspect-h-1 block bg-gray-200"
+                            className="relative rounded-lg aspect-w-1 aspect-h-1 block
+                                        bg-transparent shadow-none opacity-0 pointer-events-none
+                                        lg:block lg:opacity-100 lg:pointer-events-auto" // Hanya muncul dan interaktif di lg (desktop)
                             style={{ aspectRatio: '16 / 9' }} // Fallback for aspect-ratio
                         >
-                            {/* Anda bisa menambahkan teks "Kosong" atau ikon di sini jika mau */}
-                            {/* <p className="text-gray-500 text-center flex items-center justify-center h-full">Slot Kosong</p> */}
+                            {/* Konten di dalam placeholder (jika ada, akan tetap transparan) */}
                         </div>
                     ))}
                 </div>
 
-                {/* Pagination dan Navigasi - Hanya muncul jika ada lebih dari 6 item */}
-                {/* ===============================Tampilkan kontrol pagination jika perlu============================= */}
+                {/* Pagination dan Navigasi */}
                 {filteredItems.length > ITEMS_PER_PAGE && (
                     <div className="flex justify-center items-center mt-12 space-x-4 md:space-x-10">
                         <div className="flex space-x-2">
-                            {/* ===============================Loop untuk dot halaman============================= */}
                             {Array.from({ length: totalPages }, (_, i) => (
                                 <span
                                     key={i + 1}
@@ -152,14 +136,12 @@ const Portfolio: React.FC = () => {
                             ))}
                         </div>
                         <div className="flex space-x-4 text-gray-900 text-3xl font-bold">
-                            {/* ===============================Tombol panah sebelumnya============================= */}
                             <span
                                 className={`cursor-pointer select-none ${currentPage === 1 ? 'text-gray-300' : ''}`}
                                 onClick={() => handlePageChange(currentPage - 1)}
                             >
                                 &larr;
                             </span>
-                            {/* ===============================Tombol panah berikutnya============================= */}
                             <span
                                 className={`cursor-pointer select-none ${currentPage === totalPages ? 'text-gray-300' : ''}`}
                                 onClick={() => handlePageChange(currentPage + 1)}
