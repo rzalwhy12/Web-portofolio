@@ -55,7 +55,7 @@ const ConnectMe: React.FC = () => {
     };
 
     return (
-        <section id="connect-me" className="py-20 md:py-24 bg-white">
+        <section id="make-project" className="py-20 md:py-24 bg-white">
             <div className="container mx-auto px-4 text-center">
                 <h2 className="text-4xl md:text-5xl font-bold mb-16 text-gray-900">
                     Hire Me For Your Next Amazing Project

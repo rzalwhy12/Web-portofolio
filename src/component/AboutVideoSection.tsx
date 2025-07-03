@@ -24,7 +24,7 @@ const AboutVideoSection: React.FC<AboutVideoSectionProps> = ({
     const videoSourceWebM = videoSrc.replace(/\.mp4$/, '.webm');
 
     return (
-        <section className="bg-gray-100 text-gray-800 py-20 px-5 md:px-20 flex flex-col items-center justify-center">
+        <section id="about-video-section" className="bg-gray-100 text-gray-800 py-20 px-5 md:px-20 flex flex-col items-center justify-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-10 text-center">
                 Learn all about me in 60 seconds.
             </h2>
