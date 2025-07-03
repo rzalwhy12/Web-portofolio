@@ -1,29 +1,38 @@
-// src/components/HeroSection.tsx
 "use client"
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
-// ==================Import Gambar (tetap diperlukan untuk HeroSection)====================
 import ArrowDownIcon from '../assets/images/Scroll.svg';
 import meImage from '../assets/images/me.webp';
 
 
-const pathname = usePathname();
-const router = useRouter();
+const HeroSection: React.FC = () => {
+    const pathname = usePathname();
+    const router = useRouter();
 
-const getLinkHref = (sectionId: string) => {
-    return pathname === '/' ? `#${sectionId}` : `/#${sectionId}`;
-};
+    const getLinkHref = (sectionId: string) => {
+        return pathname === '/' ? `#${sectionId}` : `/#${sectionId}`;
+    };
 
-const handleScrollToSection = async (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string, path: string = '/') => {
-    e.preventDefault();
-    if (pathname !== path) {
-        await router.push(path);
-        // Beri sedikit waktu untuk halaman dimuat sebelum mencoba scroll
-        setTimeout(() => {
+    const handleScrollToSection = async (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
+        e.preventDefault();
+
+        const targetPath = '/';
+
+        if (pathname !== targetPath) {
+            await router.push(targetPath);
+            setTimeout(() => {
+                const targetElement = document.getElementById(sectionId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start',
+                    });
+                }
+            }, 100);
+        } else {
             const targetElement = document.getElementById(sectionId);
             if (targetElement) {
                 targetElement.scrollIntoView({
@@ -31,36 +40,19 @@ const handleScrollToSection = async (e: React.MouseEvent<HTMLAnchorElement>, sec
                     block: 'start',
                 });
             }
-        }, 100);
-    } else {
-        const targetElement = document.getElementById(sectionId);
-        if (targetElement) {
-            targetElement.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start',
-            });
         }
-    }
-};
-
-const HeroSection: React.FC = () => {
+    };
 
     return (
         <div className="dark:bg-gray-900 bg-gray-50 text-gray-800 dark:text-gray-200 min-h-screen relative pb-20">
 
-            {/* ==================Konten Utama Hero Section==================== */}
             <main id="home" className="flex flex-col lg:flex-row justify-center items-center py-20 px-4 lg:px-20 gap-12 lg:gap-24 pt-40">
                 <div className="hero-content max-w-lg text-center lg:text-left">
-                    {/* Warna teks "Hello" */}
                     <p className="text-lg text-gray-500 dark:text-gray-400 mb-1">— Hello</p>
-                    {/* Warna judul utama */}
                     <h1 className="text-5xl lg:text-6xl font-bold mb-5 leading-tight text-gray-800 dark:text-white">I&apos;m Risal Wahyu Agustin</h1>
-                    {/* Warna sub-judul */}
                     <p className="text-xl lg:text-2xl font-medium mb-5 leading-relaxed text-gray-800 dark:text-gray-200">A &quot;Full-Stack Web Developer&quot; </p>
-                    {/* Warna paragraf deskripsi */}
                     <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed mb-10">Of course, there&apos;s so much more to me than just a few fancy titles. Scroll down and get to know me.</p>
 
-                    {/* ==================Tombol Call-to-Action (CTA)==================== */}
                     <a
                         href="https://drive.google.com/file/d/12pUzNsMKjiJThkEx0G22i-MIEuB554jl/view?usp=sharing"
                         target="_blank"
@@ -70,7 +62,6 @@ const HeroSection: React.FC = () => {
                         View my-CV
                     </a>
 
-                    {/* ==================Ikon Media Sosial==================== */}
                     <div className="flex justify-center lg:justify-start gap-5 mb-12">
 
                         <a href="https://www.facebook.com/risal.agosteen" target="_blank" rel="noopener noreferrer" aria-label="Facebook"
@@ -104,17 +95,18 @@ const HeroSection: React.FC = () => {
                     </div>
                 </div>
                 <div className="hero-image flex justify-center">
-                    {/* Shadow gambar: shadow-lg di light, shadow-2xl dan warna gelap di dark */}
                     <Image src={meImage} alt="Risal Wahyu Agustin" width={450} height={600} className="rounded-lg shadow-lg dark:shadow-2xl dark:shadow-purple-900/50" />
                 </div>
             </main>
 
-            {/* ==================Indikator Scroll Down==================== */}
             <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center text-sm text-gray-500 dark:text-gray-400">
-                <Link href={getLinkHref('about-me-detailed')}
-                    onClick={(e) => handleScrollToSection(e, 'about-me-detailed')} >
+                <a
+                    href={getLinkHref('about-me-detailed')}
+                    onClick={(e) => handleScrollToSection(e, 'about-me-detailed')}
+                    aria-label="Scroll to About Me section"
+                >
                     <Image src={ArrowDownIcon} alt="Scroll Down" width={70} height={70} className="mt-2.5 cursor-pointer dark:filter dark:invert" />
-                </Link>
+                </a>
             </div>
         </div>
     );
