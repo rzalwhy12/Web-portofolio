@@ -129,7 +129,7 @@ const Portfolio: React.FC = () => {
                             // Gunakan aspect-w-1 aspect-h-1 jika Anda menggunakan @tailwindcss/aspect-ratio
                             // atau atur tinggi tetap yang sesuai.
                             className="relative rounded-lg shadow-lg aspect-w-1 aspect-h-1 block bg-gray-200"
-                            style={{ aspectRatio: '1 / 1' }} // Fallback for aspect-ratio
+                            style={{ aspectRatio: '16 / 9' }} // Fallback for aspect-ratio
                         >
                             {/* Anda bisa menambahkan teks "Kosong" atau ikon di sini jika mau */}
                             {/* <p className="text-gray-500 text-center flex items-center justify-center h-full">Slot Kosong</p> */}
