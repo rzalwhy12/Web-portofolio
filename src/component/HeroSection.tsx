@@ -100,8 +100,8 @@ const HeroSection: React.FC = () => {
 
             <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center text-sm text-gray-500 dark:text-gray-400">
                 <a
-                    href={getLinkHref('about-me-detailed')}
-                    onClick={(e) => handleScrollToSection(e, 'about-me-detailed')}
+                    href={getLinkHref('about-video-section')}
+                    onClick={(e) => handleScrollToSection(e, 'about-video-section')}
                     aria-label="Scroll to About Me section"
                 >
                     <Image src={ArrowDownIcon} alt="Scroll Down" width={70} height={70} className="mt-2.5 cursor-pointer dark:filter dark:invert" />
