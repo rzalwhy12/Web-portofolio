@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 interface PortfolioItem {
     id: number;
-    category: 'All' | 'UI & UX' | 'Graphic Design' | 'Web Development' | 'Music';
+    category: 'All' | 'UI & UX' | 'Graphic Design' | 'Web Development' ;
     imageUrl: string;
     title?: string;
     link?: string;
@@ -19,7 +19,6 @@ const portfolioItems: PortfolioItem[] = [
     { id: 5, category: 'UI & UX', imageUrl: 'images/portofolio/uiux1.png', title: 'ToDo App Desain', link: 'https://www.google.com' },
     { id: 6, category: 'Web Development', imageUrl: 'images/portofolio/todo.png', title: 'ToDo App ', link: 'https://www.google.com' },
     { id: 7, category: 'UI & UX', imageUrl: 'images/portofolio/id1.jpg', title: 'Finance App UI', link: 'https://www.google.com' },
-    { id: 8, category: 'Music', imageUrl: 'images/poto.png', title: 'Sama Salma', link: 'https://www.google.com' },
 ];
 
 const ITEMS_PER_PAGE = 6; // Ini adalah jumlah item per halaman yang Anda inginkan untuk mengisi grid
@@ -48,7 +47,6 @@ const Portfolio: React.FC = () => {
         'UI & UX',
         'Graphic Design',
         'Web Development',
-        'Music',
     ];
 
     const handlePageChange = (page: number) => {
