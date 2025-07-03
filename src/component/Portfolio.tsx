@@ -70,12 +70,16 @@ const Portfolio: React.FC = () => {
 
                 {/* Filter Kategori */}
                 <div className="flex justify-center items-center gap-6 mb-12 text-lg font-medium text-gray-600">
+                <div className="flex justify-center items-center gap-4 mb-12 text-base sm:text-lg font-medium text-gray-600"></div>
                     {categories.map((category) => (
                         <button
                             key={category}
                             onClick={() => setActiveCategory(category)}
-                            className={`pb-1 relative group transition-colors duration-300
-                                ${activeCategory === category ? 'text-gray-900' : 'hover:text-gray-800'}`}
+                            className={`pb-1 relative group transition-colors duration-300 px-2 // Tambahkan px untuk padding horizontal pada tombol
++                                ${activeCategory === category ? 'text-gray-900' : 'hover:text-gray-800'}
++                                text-sm sm:text-base // Ukuran font default lebih kecil, lalu naik di sm:
++                                md:text-lg
++                            `}
                         >
                             {category}
                             <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-gray-900
