@@ -56,21 +56,19 @@ const WhatIDo: React.FC = () => {
         <section id="what-i-do" className="py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
             <div className="container mx-auto px-4 text-center">
                 <h2 className="text-4xl md:text-5xl font-bold mb-12 text-gray-900 dark:text-white">What I Do</h2>
-                <div className="flex flex-wrap justify-center gap-8 mb-10">
+                <div className="flex flex-wrap text-gray-900 dark:text-white justify-center gap-8 mb-10">
                     {currentCards.map((service) => (
                         <ServiceCard
-                            key={service.id} // Gunakan ID unik sebagai key
+                            key={service.id} 
                             title={service.title}
                             description={service.description}
                             linkHref={service.linkHref}
-                            // Hapus prop isDark karena ServiceCard akan merespons kelas 'dark' sendiri
-                            // isDark={isDark}
                         />
                     ))}
                 </div>
 
                 {/* ==================Pagination dan Navigasi==================== */}
-                {totalPages > 1 && ( // Tampilkan navigasi hanya jika ada lebih dari 1 halaman
+                {totalPages > 1 && ( 
                     <div className="flex justify-center items-center mt-8 space-x-4 md:space-x-10">
                         {/* Dot Pagination */}
                         <div className="flex space-x-2">

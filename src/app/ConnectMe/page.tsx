@@ -75,7 +75,7 @@ const ConnectMe: React.FC = () => {
                                    dark:text-gray-300 dark:hover:text-white"> {/* Warna teks dan hover di dark mode */}
                         <svg className="w-5 h-5 mr-2
                                         dark:text-gray-300" // Warna ikon panah di dark mode
-                             fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
                         Back to Contact Section
                     </Link>
                 </div>
