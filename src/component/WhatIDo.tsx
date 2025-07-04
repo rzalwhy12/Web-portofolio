@@ -3,10 +3,9 @@
 
 import React, { useState } from 'react';
 import ServiceCard from '../component/ServiceCard';
-// import { useSelector } from 'react-redux'; // Hapus ini
-// import { RootState } from '../redux/store'; // Hapus ini
 
-// Contoh data layanan (pertimbangkan memindahkannya ke file data terpisah jika besar)
+
+
 interface Service {
     id: string; // ID unik sangat penting untuk key
     title: string;
@@ -25,9 +24,6 @@ const CARDS_PER_PAGE = 3; // Jumlah kartu yang ditampilkan per halaman
 const WhatIDo: React.FC = () => {
     const [currentPage, setCurrentPage] = useState(0);
 
-    // Hapus baris ini karena tidak lagi menggunakan Redux:
-    // const themeMode = useSelector((state: RootState) => state.theme.mode);
-    // const isDark = themeMode === 'dark';
 
     // Hitung total halaman
     const totalPages = Math.ceil(allServices.length / CARDS_PER_PAGE);

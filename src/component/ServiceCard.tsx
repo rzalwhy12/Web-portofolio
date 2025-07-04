@@ -21,7 +21,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ title, description, linkHref 
             <p className="text-gray-700 dark:text-gray-300 mb-6"> 
                 {description}
             </p>
-            <Link href={`/skills/${linkHref}`} className="inline-block px-6 py-2 rounded-full font-semibold
+            <Link href={`/${linkHref}`} className="inline-block px-6 py-2 rounded-full font-semibold
                                                         bg-purple-600 text-white hover:bg-purple-700
                                                         dark:bg-purple-500 dark:hover:bg-purple-600">
                 Learn More
