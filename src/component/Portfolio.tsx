@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState, useMemo } from 'react';
-import Image from 'next/image';
 
 interface PortfolioItem {
     id: number;
@@ -105,7 +104,7 @@ const Portfolio: React.FC = () => {
                             // Shadow di light mode: shadow-lg, di dark mode: shadow-xl dengan warna ungu transparan
                             className="group relative overflow-hidden rounded-lg shadow-lg dark:shadow-xl dark:shadow-purple-900/50 aspect-w-16 aspect-h-9 block"
                         >
-                            <Image
+                            <img
                                 src={item.imageUrl}
                                 alt={item.title || item.category}
                                 width={400}
