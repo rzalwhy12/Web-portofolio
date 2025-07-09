@@ -84,11 +84,20 @@ const HeroSection: React.FC = () => {
                                 <path d="M2.5 12c0-5.25 4.25-9.5 9.5-9.5S21.5 6.75 21.5 12 17.25 21.5 12 21.5 2.5 17.25 2.5 12zM15 12c0-1.66-1.34-3-3-3s-3 1.34-3 3 1.34 3 3 3 3-1.34 3-3zM12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5z" />
                             </svg>
                         </a>
-                        <a href="https://x.com/RisalWahyu11493" target="_blank" rel="noopener noreferrer" aria-label="Twitter"
+                        <a href="https://x.com/RisalWahyu11493" target="_blank" rel="noopener noreferrer" aria-label="X"
                             className="text-gray-400 hover:text-gray-600 transition-colors duration-200
                                     dark:text-gray-300 dark:hover:text-white">
                             <svg className="w-8 h-8 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-6.793-8.983L5.418 21.75H1.49L9.35 12.81 1.01 2.25h8.29L12 9.313 18.244 2.25zm-2.43 14.887l.867.754h3.084l-4.24-3.665-2.478 3.298zm-9.357-11.23L4.17 3.526h-3.084l4.24 3.665L9.357 5.25z" />
+                            </svg>
+                        </a>
+                        <a href="https://www.instagram.com/rzalwhy/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"
+                            className="text-gray-400 hover:text-gray-600 transition-colors duration-200
+                                    dark:text-gray-300 dark:hover:text-white">
+                            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M2 5C2 3.34315 3.34315 2 5 2H19C20.6569 2 22 3.34315 22 5V19C22 20.6569 20.6569 22 19 22H5C3.34315 22 2 20.6569 2 19V5Z"></path>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <path d="M17.5 6.5C17.5 6.77614 17.2761 7 17 7C16.7239 7 16.5 6.77614 16.5 6.5C16.5 6.22386 16.7239 6 17 6C17.2761 6 17.5 6.22386 17.5 6.5Z" fill="currentColor" stroke="none"></path>
                             </svg>
                         </a>
                     </div>
