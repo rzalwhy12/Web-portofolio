@@ -7,6 +7,7 @@ import ContactMe from '../component/ContactMe';
 import AboutMe from '../component/AboutMe';
 import ConnectMe from '../component/ConnectMe';
 import AboutVideoSection from '../component/AboutVideoSection';
+import WorkExperience from '../component/WorkExperience';
 
 function App() {
     return (
@@ -15,6 +16,7 @@ function App() {
             <AboutVideoSection />
             <AboutMe />
             <WhatIDo />
+            <WorkExperience/>
             <Portfolio />
             <ClientTestimonial />
             <ContactMe />
