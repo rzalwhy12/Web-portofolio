@@ -1,6 +1,5 @@
 // components/WorkExperienceCard.tsx
 import React from 'react';
-import { ArrowRight } from 'lucide-react';
 
 interface WorkExperienceCardProps {
     title: string;
@@ -20,11 +19,6 @@ const WorkExperienceCard: React.FC<WorkExperienceCardProps> = ({
     darkTextColor = 'dark:text-gray-100',
 }) => {
     const isLightModeDarkCard = bgColor === 'bg-gray-800' || bgColor === 'bg-black' || bgColor === 'bg-zinc-800';
-
-    const arrowBaseColor = isLightModeDarkCard ? 'text-white' : 'text-gray-800';
-    const arrowDarkModeColor = isLightModeDarkCard ? 'dark:text-gray-100' : 'dark:text-white';
-
-
     return (
         <div
             className={`

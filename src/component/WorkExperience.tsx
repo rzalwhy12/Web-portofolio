@@ -1,9 +1,8 @@
 // components/WorkExperience.tsx
 'use client';
 
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect } from 'react'; 
 import WorkExperienceCard from './WorkExperienceCard';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
 
 interface Experience {
     id: string;
@@ -65,15 +64,15 @@ const DUMMY_EXPERIENCES: Experience[] = [
 
 const WorkExperience: React.FC = () => {
     const scrollContainerRef = useRef<HTMLDivElement>(null);
-    const [isScrolling, setIsScrolling] = useState(false);
+    // Removed const [isScrolling, setIsScrolling] = useState(false);
     const scrollIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
     const startAutoScroll = () => {
         if (scrollContainerRef.current) {
-            setIsScrolling(true);
+            // Removed setIsScrolling(true);
             scrollIntervalRef.current = setInterval(() => {
                 if (scrollContainerRef.current) {
-                    const { scrollLeft} = scrollContainerRef.current;
+                    const { scrollLeft } = scrollContainerRef.current;
                     const nextScroll = scrollLeft + 1;
 
                     const cardWidth = 320 + 32;
@@ -95,7 +94,7 @@ const WorkExperience: React.FC = () => {
             clearInterval(scrollIntervalRef.current);
             scrollIntervalRef.current = null;
         }
-        setIsScrolling(false);
+        // Removed setIsScrolling(false);
     };
 
     useEffect(() => {
@@ -115,25 +114,6 @@ const WorkExperience: React.FC = () => {
             }
         };
     }, []);
-
-    const handleManualScroll = (direction: 'left' | 'right') => {
-        if (scrollContainerRef.current) {
-            const scrollAmount = 300;
-            const { scrollLeft } = scrollContainerRef.current;
-            if (direction === 'right') {
-                scrollContainerRef.current.scrollTo({
-                    left: scrollLeft + scrollAmount,
-                    behavior: 'smooth',
-                });
-            } else {
-                scrollContainerRef.current.scrollTo({
-                    left: Math.max(0, scrollLeft - scrollAmount),
-                    behavior: 'smooth',
-                });
-            }
-        }
-    };
-
     return (
         <section className="py-20 bg-gray-50 dark:bg-gray-900 overflow-hidden transition-colors duration-300">
             <div className="container mx-auto px-4">
