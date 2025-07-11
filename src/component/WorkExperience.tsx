@@ -115,7 +115,7 @@ const WorkExperience: React.FC = () => {
         };
     }, []);
     return (
-        <section className="py-20 bg-gray-50 dark:bg-gray-900 overflow-hidden transition-colors duration-300">
+        <section id="my-work-experience" className="py-20 bg-gray-50 dark:bg-gray-900 overflow-hidden transition-colors duration-300">
             <div className="container mx-auto px-4">
                 <h2 className="text-4xl font-bold text-center mb-16 text-gray-800 dark:text-gray-100 transition-colors duration-300">My Work Experience</h2>
 

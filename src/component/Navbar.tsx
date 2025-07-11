@@ -148,8 +148,9 @@ const Navbar = () => {
                                 )}
                             </div>
 
+                            <Link href={getLinkHref('what-i-do')} onClick={(e) => handleScrollToSection(e, 'what-i-do')} className="hover:text-purple-700 dark:hover:text-yellow-400 whitespace-nowrap">Skills</Link> 
+                            <Link href={getLinkHref('my-work-experience')} onClick={(e) => handleScrollToSection(e, 'my-work-experience')} className="hover:text-purple-700 dark:hover:text-yellow-400 whitespace-nowrap">Experience</Link>
                             <Link href={getLinkHref('portfolio')} onClick={(e) => handleScrollToSection(e, 'portfolio')} className="hover:text-purple-700 dark:hover:text-yellow-400 whitespace-nowrap">Portfolio</Link>
-                            <Link href={getLinkHref('what-i-do')} onClick={(e) => handleScrollToSection(e, 'what-i-do')} className="hover:text-purple-700 dark:hover:text-yellow-400 whitespace-nowrap">Skills</Link> {/* Menu Skill baru */}
                             <Link href={getLinkHref('client-testimonial')} onClick={(e) => handleScrollToSection(e, 'client-testimonial')} className="hover:text-purple-700 dark:hover:text-yellow-400 whitespace-nowrap">Testimonial</Link>
 
                             {/* Contact with Sub-menu */}
@@ -264,18 +265,25 @@ const Navbar = () => {
                     </div>
 
                     <Link
-                        href={getLinkHref('portfolio')}
-                        className="py-3 px-4 text-xl font-semibold text-gray-800 dark:text-gray-200 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition duration-150 ease-in-out"
-                        onClick={(e) => handleScrollToSection(e, 'portfolio')}
-                    >
-                        Portfolio
-                    </Link>
-                    <Link
                         href={getLinkHref('what-i-do')} // Link untuk Skill
                         className="py-3 px-4 text-xl font-semibold text-gray-800 dark:text-gray-200 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition duration-150 ease-in-out"
                         onClick={(e) => handleScrollToSection(e, 'what-i-do')}
                     >
                         Skills
+                    </Link>
+                    <Link
+                        href={getLinkHref('my-work-experience')} // Link untuk Skill
+                        className="py-3 px-4 text-xl font-semibold text-gray-800 dark:text-gray-200 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition duration-150 ease-in-out"
+                        onClick={(e) => handleScrollToSection(e, 'my-work-experience')}
+                    >
+                        Experience
+                    </Link>
+                    <Link
+                        href={getLinkHref('portfolio')}
+                        className="py-3 px-4 text-xl font-semibold text-gray-800 dark:text-gray-200 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition duration-150 ease-in-out"
+                        onClick={(e) => handleScrollToSection(e, 'portfolio')}
+                    >
+                        Portfolio
                     </Link>
                     <Link
                         href={getLinkHref('client-testimonial')}
