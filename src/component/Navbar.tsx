@@ -38,7 +38,7 @@ const Navbar = () => {
         return pathname === '/' ? `#${sectionId}` : `/#${sectionId}`;
     };
 
-    const handleScrollToSection = async (e: React.MouseEvent<HTMLAnchorElement> | any, sectionId: string, path: string = '/') => {
+    const handleScrollToSection = async (e: React.MouseEvent<HTMLAnchorElement> | React.TouchEvent | any, sectionId: string, path: string = '/') => {
         // generic preventDefault for links or buttons
         if (e && typeof e.preventDefault === 'function') e.preventDefault();
 
@@ -46,15 +46,30 @@ const Navbar = () => {
         const tryScroll = () => {
             const target = document.getElementById(sectionId);
             if (target) {
-                // Prefer native smooth scroll; if a smooth-scroll library (lenis) is active
-                // it should still respect this, otherwise you can adapt to library API.
                 try {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    // Calculate offset for mobile header
+                    const offset = isSmallScreen ? 60 : 0; // Adjust this value based on your header height
+                    const targetPosition = target.getBoundingClientRect().top + window.scrollY - offset;
+                    
+                    // Try smooth scroll with offset
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                    
+                    return true;
                 } catch (err) {
-                    // fallback
-                    window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY, behavior: 'smooth' });
+                    console.error('Scroll failed:', err);
+                    // Emergency fallback - just jump to element
+                    try {
+                        const offset = isSmallScreen ? 60 : 0;
+                        window.scrollTo(0, target.offsetTop - offset);
+                        return true;
+                    } catch (fallbackErr) {
+                        console.error('Fallback scroll failed:', fallbackErr);
+                        return false;
+                    }
                 }
-                return true;
             }
             return false;
         };
@@ -66,9 +81,12 @@ const Navbar = () => {
             // navigate first, then poll for the element to appear and scroll
             await router.push(destination);
 
+            // Add a small delay after navigation to ensure page is ready
+            await new Promise(resolve => setTimeout(resolve, 100));
+
             const start = Date.now();
-            const timeout = 1500; // ms
-            const interval = 50;
+            const timeout = 2000; // Increased timeout for slower devices
+            const interval = 100; // Increased interval to reduce polling frequency
 
             await new Promise<void>((resolve) => {
                 const id = setInterval(() => {
@@ -79,8 +97,9 @@ const Navbar = () => {
                 }, interval);
             });
         } else {
-            // already on page - scroll immediately (or after next frame)
-            requestAnimationFrame(() => tryScroll());
+            // already on page - add small delay for reliability
+            await new Promise(resolve => setTimeout(resolve, 50));
+            tryScroll();
         }
 
         // Close mobile menu and sub-menus after navigation/scroll attempt
