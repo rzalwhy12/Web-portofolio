@@ -168,7 +168,7 @@ const HeroduaSection = () => {
 	return (
 		<section
 			ref={sectionRef}
-			className="relative w-full h-40 sm:h-70 overflow-hidden mt-[30px] pb-5 lg:pb-0 font-[family-name:var(--font-poppins)] dark:bg-gray-900 dark:text-gray-200"
+			className="relative w-full h-40 sm:h-70 mt-[200px] sm:mt-[30px] pb-5 lg:pb-0 font-[family-name:var(--font-poppins)] dark:bg-gray-900 dark:text-gray-200"
 			style={{ minHeight: isMobile ? "auto" : "100vh" }}
 		>
 			{/* TEXT 1 (Musician) - Left Side */}

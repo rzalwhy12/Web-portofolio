@@ -1,7 +1,7 @@
 // src/components/Navbar.tsx
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation'; // Import useRouter
 import ThemeToggleButton from './ThemeToggleButton';
@@ -14,6 +14,7 @@ const Navbar = () => {
     const [isContactSubMenuOpen, setIsContactSubMenuOpen] = useState(false); // State untuk sub-menu Contact
     const pathname = usePathname();
     const router = useRouter(); // Inisialisasi useRouter
+    const [isSmallScreen, setIsSmallScreen] = useState(false);
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -69,18 +70,31 @@ const Navbar = () => {
         setIsContactSubMenuOpen(false);
     };
 
+    // Detect small screens to simplify header behaviour on mobile
+    useEffect(() => {
+        if (typeof window === 'undefined') return;
+        const update = () => setIsSmallScreen(window.innerWidth < 768);
+        update();
+        window.addEventListener('resize', update);
+        return () => window.removeEventListener('resize', update);
+    }, []);
 
-    return (
-        <>
-            <header
-                className={`fixed top-5 left-1/2 -translate-x-1/2 flex items-center
+    const headerClass = isSmallScreen
+        ? 'fixed top-0 left-0 w-full flex items-center justify-between p-4 bg-white dark:bg-gray-900 z-40 shadow'
+        : `fixed top-5 left-1/2 -translate-x-1/2 flex items-center
                             bg-gray-800/30 text-white rounded-full p-2 shadow-lg z-40
                             backdrop-filter backdrop-blur-lg border border-white border-opacity-20
                             transition-all duration-500 ease-in-out
                             ${isNavbarHovered ? 'w-[calc(100%-80px)] px-8 py-3 justify-between' : 'w-24 px-4 py-2 justify-center'}
                             lg:${isNavbarHovered ? 'w-[calc(100%-200px)] px-8 py-3' : 'w-28 px-4 py-2'}
                             dark:bg-gray-900/30 dark:border-gray-700 dark:border-opacity-20
-                            `}
+                            `;
+
+
+    return (
+        <>
+            <header
+                className={headerClass}
                 onMouseEnter={() => setIsNavbarHovered(true)}
                 onMouseLeave={() => {
                     setIsNavbarHovered(false);
@@ -89,118 +103,146 @@ const Navbar = () => {
                     setIsContactSubMenuOpen(false);
                 }}
             >
-                {!isNavbarHovered && (
-                    <Link
-                        href={getLinkHref('home')}
-                        onClick={(e) => handleScrollToSection(e, 'home')}
-                        className="flex-shrink-0 text-2xl lg:text-3xl font-bold text-white whitespace-nowrap"
-                    >
-                        Rzal.
-                    </Link>
-                )}
-
-                <div
-                    className={`flex-grow flex items-center justify-between
-                                transition-all duration-500 ease-in-out
-                                ${isNavbarHovered ? 'opacity-100 translate-x-0 delay-200' : 'opacity-0 -translate-x-4 pointer-events-none absolute left-1/2 '}
-                                `}
-                >
-                    {isNavbarHovered && (
+                {isSmallScreen ? (
+                    <div className="flex items-center justify-between w-full">
                         <Link
                             href={getLinkHref('home')}
                             onClick={(e) => handleScrollToSection(e, 'home')}
-                            className="text-2xl lg:text-3xl font-bold text-white whitespace-nowrap"
+                            className="text-lg font-bold text-gray-900 dark:text-white"
                         >
                             Rzal.
                         </Link>
-                    )}
 
-                    <div className="flex items-center space-x-6 lg:space-x-10">
-                        {/* Navigasi Utama (Desktop) */}
-                        <nav className="hidden md:flex space-x-6 lg:space-x-10 text-base lg:text-lg font-medium">
-                            <Link href={getLinkHref('home')} onClick={(e) => handleScrollToSection(e, 'home')} className="hover:text-purple-700 dark:hover:text-yellow-400 whitespace-nowrap">Home</Link>
-
-                            {/* About Me with Sub-menu */}
-                            <div className="relative group">
-                                <button
-                                    onClick={toggleAboutSubMenu}
-                                    className="flex items-center hover:text-purple-700 dark:hover:text-yellow-400 focus:outline-none whitespace-nowrap"
-                                >
-                                    About Me <ChevronDown className={`ml-1 w-4 h-4 transition-transform duration-200 ${isAboutSubMenuOpen ? 'rotate-180' : 'rotate-0'}`} />
-                                </button>
-                                {isAboutSubMenuOpen && (
-                                    <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg py-1 z-50">
-                                        <Link
-                                            href={getLinkHref('about-me-detailed')}
-                                            onClick={(e) => handleScrollToSection(e, 'about-me-detailed')}
-                                            className="block px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 whitespace-nowrap"
-                                        >
-                                            About Me
-                                        </Link>
-                                    </div>
-                                )}
-                            </div>
-                            <Link href={getLinkHref('my-work-experience')} onClick={(e) => handleScrollToSection(e, 'my-work-experience')} className="hover:text-purple-700 dark:hover:text-yellow-400 whitespace-nowrap">Experience</Link>
-                            <Link href={getLinkHref('portfolio')} onClick={(e) => handleScrollToSection(e, 'portfolio')} className="hover:text-purple-700 dark:hover:text-yellow-400 whitespace-nowrap">Portfolio</Link>
-                            <Link href={getLinkHref('client-testimonial')} onClick={(e) => handleScrollToSection(e, 'client-testimonial')} className="hover:text-purple-700 dark:hover:text-yellow-400 whitespace-nowrap">Testimonial</Link>
-
-                            {/* Contact with Sub-menu */}
-                            <div className="relative group">
-                                <button
-                                    onClick={toggleContactSubMenu}
-                                    className="flex items-center hover:text-purple-700 dark:hover:text-yellow-400 focus:outline-none whitespace-nowrap"
-                                >
-                                    Contact <ChevronDown className={`ml-1 w-4 h-4 transition-transform duration-200 ${isContactSubMenuOpen ? 'rotate-180' : 'rotate-0'}`} />
-                                </button>
-                                {isContactSubMenuOpen && (
-                                    <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-56 bg-white dark:bg-gray-800 rounded-md shadow-lg py-1 z-50">
-                                        <Link
-                                            href={getLinkHref('contact-me')}
-                                            onClick={(e) => handleScrollToSection(e, 'contact-me')}
-                                            className="block px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 whitespace-nowrap"
-                                        >
-                                            Connect Me
-                                        </Link>
-                                        <Link
-                                            href={getLinkHref('make-project')} // Asumsi ID yang berbeda, sesuaikan jika sama
-                                            onClick={(e) => handleScrollToSection(e, 'make-project')}
-                                            className="block px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 whitespace-nowrap"
-                                        >
-                                            Make Project With Me
-                                        </Link>
-                                    </div>
-                                )}
-                            </div>
-                        </nav>
-
-                        <div className="hidden md:block">
-                            <ThemeToggleButton/>
+                        <div className="flex items-center space-x-3">
+                            <ThemeToggleButton />
+                            <button
+                                type="button"
+                                className="p-2 text-gray-900 dark:text-gray-100"
+                                onClick={toggleMenu}
+                                onTouchStart={toggleMenu}
+                                aria-label="Toggle menu"
+                                aria-expanded={isMenuOpen}
+                            >
+                                {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                            </button>
                         </div>
-
-                        {/* Tombol Toggle Menu untuk Mobile - Ganti dengan ikon Menu dari Lucide */}
-                        <button
-                            type="button"
-                            className="p-2 relative md:hidden text-white"
-                            onClick={toggleMenu}
-                            onTouchStart={toggleMenu}
-                            aria-label="Toggle menu"
-                            aria-expanded={isMenuOpen}
-                        >
-                            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-                        </button>
-
-                        <a
-                            href="https://drive.google.com/file/d/12pUzNsMKjiJThkEx0G22i-MIEuB554jl/view?usp=sharing"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="hidden md:inline-block bg-white text-gray-800 px-4 py-2 rounded-full text-base font-medium
-                                    hover:bg-gray-200 transition duration-300 ease-in-out
-                                    dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600 whitespace-nowrap"
-                        >
-                            View CV
-                        </a>
                     </div>
-                </div>
+                ) : (
+                    <>
+                        {!isNavbarHovered && (
+                            <Link
+                                href={getLinkHref('home')}
+                                onClick={(e) => handleScrollToSection(e, 'home')}
+                                className="flex-shrink-0 text-2xl lg:text-3xl font-bold text-white whitespace-nowrap"
+                            >
+                                Rzal.
+                            </Link>
+                        )}
+
+                        <div
+                            className={`flex-grow flex items-center justify-between
+                                        transition-all duration-500 ease-in-out
+                                        ${isNavbarHovered ? 'opacity-100 translate-x-0 delay-200' : 'opacity-0 -translate-x-4 pointer-events-none absolute left-1/2 '}
+                                        `}
+                        >
+                            {isNavbarHovered && (
+                                <Link
+                                    href={getLinkHref('home')}
+                                    onClick={(e) => handleScrollToSection(e, 'home')}
+                                    className="text-2xl lg:text-3xl font-bold text-white whitespace-nowrap"
+                                >
+                                    Rzal.
+                                </Link>
+                            )}
+
+                            <div className="flex items-center space-x-6 lg:space-x-10">
+                                {/* Navigasi Utama (Desktop) */}
+                                <nav className="hidden md:flex space-x-6 lg:space-x-10 text-base lg:text-lg font-medium">
+                                    <Link href={getLinkHref('home')} onClick={(e) => handleScrollToSection(e, 'home')} className="hover:text-purple-700 dark:hover:text-yellow-400 whitespace-nowrap">Home</Link>
+
+                                    {/* About Me with Sub-menu */}
+                                    <div className="relative group">
+                                        <button
+                                            onClick={toggleAboutSubMenu}
+                                            className="flex items-center hover:text-purple-700 dark:hover:text-yellow-400 focus:outline-none whitespace-nowrap"
+                                        >
+                                            About Me <ChevronDown className={`ml-1 w-4 h-4 transition-transform duration-200 ${isAboutSubMenuOpen ? 'rotate-180' : 'rotate-0'}`} />
+                                        </button>
+                                        {isAboutSubMenuOpen && (
+                                            <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg py-1 z-50">
+                                                <Link
+                                                    href={getLinkHref('about-me-detailed')}
+                                                    onClick={(e) => handleScrollToSection(e, 'about-me-detailed')}
+                                                    className="block px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 whitespace-nowrap"
+                                                >
+                                                    About Me
+                                                </Link>
+                                            </div>
+                                        )}
+                                    </div>
+                                    <Link href={getLinkHref('my-work-experience')} onClick={(e) => handleScrollToSection(e, 'my-work-experience')} className="hover:text-purple-700 dark:hover:text-yellow-400 whitespace-nowrap">Experience</Link>
+                                    <Link href={getLinkHref('portfolio')} onClick={(e) => handleScrollToSection(e, 'portfolio')} className="hover:text-purple-700 dark:hover:text-yellow-400 whitespace-nowrap">Portfolio</Link>
+                                    <Link href={getLinkHref('client-testimonial')} onClick={(e) => handleScrollToSection(e, 'client-testimonial')} className="hover:text-purple-700 dark:hover:text-yellow-400 whitespace-nowrap">Testimonial</Link>
+
+                                    {/* Contact with Sub-menu */}
+                                    <div className="relative group">
+                                        <button
+                                            onClick={toggleContactSubMenu}
+                                            className="flex items-center hover:text-purple-700 dark:hover:text-yellow-400 focus:outline-none whitespace-nowrap"
+                                        >
+                                            Contact <ChevronDown className={`ml-1 w-4 h-4 transition-transform duration-200 ${isContactSubMenuOpen ? 'rotate-180' : 'rotate-0'}`} />
+                                        </button>
+                                        {isContactSubMenuOpen && (
+                                            <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-56 bg-white dark:bg-gray-800 rounded-md shadow-lg py-1 z-50">
+                                                <Link
+                                                    href={getLinkHref('contact-me')}
+                                                    onClick={(e) => handleScrollToSection(e, 'contact-me')}
+                                                    className="block px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 whitespace-nowrap"
+                                                >
+                                                    Connect Me
+                                                </Link>
+                                                <Link
+                                                    href={getLinkHref('make-project')} // Asumsi ID yang berbeda, sesuaikan jika sama
+                                                    onClick={(e) => handleScrollToSection(e, 'make-project')}
+                                                    className="block px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 whitespace-nowrap"
+                                                >
+                                                    Make Project With Me
+                                                </Link>
+                                            </div>
+                                        )}
+                                    </div>
+                                </nav>
+
+                                <div className="hidden md:block">
+                                    <ThemeToggleButton/>
+                                </div>
+
+                                {/* Tombol Toggle Menu untuk Mobile - Ganti dengan ikon Menu dari Lucide */}
+                                <button
+                                    type="button"
+                                    className="p-2 relative md:hidden text-white"
+                                    onClick={toggleMenu}
+                                    onTouchStart={toggleMenu}
+                                    aria-label="Toggle menu"
+                                    aria-expanded={isMenuOpen}
+                                >
+                                    {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                                </button>
+
+                                <a
+                                    href="https://drive.google.com/file/d/12pUzNsMKjiJThkEx0G22i-MIEuB554jl/view?usp=sharing"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="hidden md:inline-block bg-white text-gray-800 px-4 py-2 rounded-full text-base font-medium
+                                            hover:bg-gray-200 transition duration-300 ease-in-out
+                                            dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600 whitespace-nowrap"
+                                >
+                                    View CV
+                                </a>
+                            </div>
+                        </div>
+                    </>
+                )}
             </header>
 
             {isMenuOpen && (
