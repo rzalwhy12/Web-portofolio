@@ -38,33 +38,52 @@ const Navbar = () => {
         return pathname === '/' ? `#${sectionId}` : `/#${sectionId}`;
     };
 
-    const handleScrollToSection = async (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string, path: string = '/') => {
-        e.preventDefault();
+    const handleScrollToSection = async (e: React.MouseEvent<HTMLAnchorElement> | any, sectionId: string, path: string = '/') => {
+        // generic preventDefault for links or buttons
+        if (e && typeof e.preventDefault === 'function') e.preventDefault();
 
-        // Jika tidak di halaman utama, navigasi dulu ke halaman utama
-        if (pathname !== path) {
-            await router.push(path);
-            // Beri sedikit waktu untuk halaman dimuat sebelum mencoba scroll
-            setTimeout(() => {
-                const targetElement = document.getElementById(sectionId);
-                if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start',
-                    });
+        // Helper to attempt scrolling when element is present
+        const tryScroll = () => {
+            const target = document.getElementById(sectionId);
+            if (target) {
+                // Prefer native smooth scroll; if a smooth-scroll library (lenis) is active
+                // it should still respect this, otherwise you can adapt to library API.
+                try {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                } catch (err) {
+                    // fallback
+                    window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY, behavior: 'smooth' });
                 }
-            }, 100); // Penundaan kecil, bisa disesuaikan
-        } else {
-            // Jika sudah di halaman utama, langsung scroll
-            const targetElement = document.getElementById(sectionId);
-            if (targetElement) {
-                targetElement.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start',
-                });
+                return true;
             }
+            return false;
+        };
+
+        // If navigating to a different path, include hash so browser can attempt native jump
+        const destination = path === '/' ? `/#${sectionId}` : `${path}#${sectionId}`;
+
+        if (pathname !== path) {
+            // navigate first, then poll for the element to appear and scroll
+            await router.push(destination);
+
+            const start = Date.now();
+            const timeout = 1500; // ms
+            const interval = 50;
+
+            await new Promise<void>((resolve) => {
+                const id = setInterval(() => {
+                    if (tryScroll() || Date.now() - start > timeout) {
+                        clearInterval(id);
+                        resolve();
+                    }
+                }, interval);
+            });
+        } else {
+            // already on page - scroll immediately (or after next frame)
+            requestAnimationFrame(() => tryScroll());
         }
-        // Tutup menu mobile dan sub-menu setelah klik (jika terbuka)
+
+        // Close mobile menu and sub-menus after navigation/scroll attempt
         setIsMenuOpen(false);
         setIsAboutSubMenuOpen(false);
         setIsContactSubMenuOpen(false);
