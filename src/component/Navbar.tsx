@@ -182,8 +182,9 @@ const Navbar = () => {
                             className="p-2 relative md:hidden text-white"
                             onClick={toggleMenu}
                             aria-label="Toggle menu"
+                            aria-expanded={isMenuOpen}
                         >
-                            <Menu className="w-6 h-6" /> {/* Menggunakan ikon Menu */}
+                            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
                         </button>
 
                         <a
@@ -204,7 +205,8 @@ const Navbar = () => {
                 <div
                     className="fixed inset-0 z-40 md:hidden"
                     onClick={toggleMenu}
-                ></div>
+                    aria-hidden="true"
+                />
             )}
 
             {/* Mobile Menu Sidebar */}
@@ -212,6 +214,12 @@ const Navbar = () => {
                 className={`fixed top-0 right-0 h-full w-64 shadow-xl z-50 transform transition-transform duration-300 ease-in-out
                 ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}
                 bg-white dark:bg-gray-900`}
+                role="dialog"
+                aria-modal="true"
+                onClick={(e) => e.stopPropagation()} // Prevent clicks inside sidebar from closing the overlay
+                onKeyDown={(e) => {
+                    if (e.key === 'Escape') toggleMenu();
+                }}
             >
                 <div className="flex justify-end p-6">
                     <button className="p-2 text-gray-700 dark:text-gray-200 hover:text-red-500 dark:hover:text-red-400 transition-colors duration-200" onClick={toggleMenu} aria-label="Close menu">
