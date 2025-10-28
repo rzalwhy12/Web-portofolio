@@ -137,18 +137,9 @@ const Navbar = () => {
                                         >
                                             About Me
                                         </Link>
-                                        <Link
-                                            href={getLinkHref('about-video-section')}
-                                            onClick={(e) => handleScrollToSection(e, 'about-video-section')}
-                                            className="block px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 whitespace-nowrap"
-                                        >
-                                            About Me Video
-                                        </Link>
                                     </div>
                                 )}
                             </div>
-
-                            <Link href={getLinkHref('what-i-do')} onClick={(e) => handleScrollToSection(e, 'what-i-do')} className="hover:text-purple-700 dark:hover:text-yellow-400 whitespace-nowrap">Skills</Link> 
                             <Link href={getLinkHref('my-work-experience')} onClick={(e) => handleScrollToSection(e, 'my-work-experience')} className="hover:text-purple-700 dark:hover:text-yellow-400 whitespace-nowrap">Experience</Link>
                             <Link href={getLinkHref('portfolio')} onClick={(e) => handleScrollToSection(e, 'portfolio')} className="hover:text-purple-700 dark:hover:text-yellow-400 whitespace-nowrap">Portfolio</Link>
                             <Link href={getLinkHref('client-testimonial')} onClick={(e) => handleScrollToSection(e, 'client-testimonial')} className="hover:text-purple-700 dark:hover:text-yellow-400 whitespace-nowrap">Testimonial</Link>
@@ -253,26 +244,11 @@ const Navbar = () => {
                                 >
                                     About Me
                                 </Link>
-                                <Link
-                                    href={getLinkHref('about-video-section')}
-                                    onClick={(e) => handleScrollToSection(e, 'about-video-section')}
-                                    className="py-2 px-4 text-lg text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition duration-150 ease-in-out"
-                                >
-                                    About Me Video
-                                </Link>
                             </div>
                         )}
                     </div>
-
                     <Link
-                        href={getLinkHref('what-i-do')} // Link untuk Skill
-                        className="py-3 px-4 text-xl font-semibold text-gray-800 dark:text-gray-200 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition duration-150 ease-in-out"
-                        onClick={(e) => handleScrollToSection(e, 'what-i-do')}
-                    >
-                        Skills
-                    </Link>
-                    <Link
-                        href={getLinkHref('my-work-experience')} // Link untuk Skill
+                        href={getLinkHref('my-work-experience')}
                         className="py-3 px-4 text-xl font-semibold text-gray-800 dark:text-gray-200 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition duration-150 ease-in-out"
                         onClick={(e) => handleScrollToSection(e, 'my-work-experience')}
                     >
@@ -322,7 +298,7 @@ const Navbar = () => {
                     </div>
 
                     <a
-                        href="https://drive.google.com/file/d/12pUzNsMKjiJThkEx0G22i-MIEuB554jl/view?usp=sharing"
+                        href="https://drive.google.com/file/d/1eEm_EsG_BBnaOchQG6JFCeGvMtYz6SfI/view?usp=drive_link"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="py-3 px-4 text-xl font-semibold text-gray-800 dark:text-gray-200 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition duration-150 ease-in-out"

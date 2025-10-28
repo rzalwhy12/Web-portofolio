@@ -17,8 +17,8 @@ interface Experience {
 const DUMMY_EXPERIENCES: Experience[] = [
     {
         id: 'exp1',
-        title: 'Senior UI/UX Designer',
-        description: 'Lead design efforts for enterprise software solutions, focusing on user-centered design principles and usability testing. Collaborate with product managers and engineers.',
+        title: 'Freelance Full-Stack Developer',
+        description: 'Worked with various clients to develop and maintain web applications using MERN stack technologies. Delivered customized solutions to meet client requirements.',
         bgColor: 'bg-gray-800',
         textColor: 'text-white',
         darkBgColor: 'dark:bg-zinc-900',
@@ -26,8 +26,8 @@ const DUMMY_EXPERIENCES: Experience[] = [
     },
     {
         id: 'exp2',
-        title: 'Front-End Developer',
-        description: 'Developed responsive web applications using React and Next.js. Implemented pixel-perfect designs and optimized for performance across various devices.',
+        title: 'E-commerce Web Developer',
+        description: 'Developed and optimized e-commerce platforms, enhancing user experience and increasing sales. Implemented secure payment gateways and responsive design.',
         bgColor: 'bg-gray-200',
         textColor: 'text-gray-800',
         darkBgColor: 'dark:bg-gray-700',
@@ -44,8 +44,8 @@ const DUMMY_EXPERIENCES: Experience[] = [
     },
     {
         id: 'exp4',
-        title: 'Marketing Specialist',
-        description: 'Managed digital marketing strategies, including SEO, SEM, and social media campaigns. Analyzed market trends and competitor activities to optimize performance.',
+        title: 'Marketing Executive property',
+        description: 'Developed and executed marketing strategies to promote real estate properties. Coordinated with sales teams to create compelling promotional materials and campaigns.',
         bgColor: 'bg-gray-200',
         textColor: 'text-gray-800',
         darkBgColor: 'dark:bg-gray-700',
@@ -53,8 +53,8 @@ const DUMMY_EXPERIENCES: Experience[] = [
     },
     {
         id: 'exp5',
-        title: 'Project Manager',
-        description: 'Oversaw software development projects from conception to deployment. Coordinated cross-functional teams, managed timelines, and ensured successful project delivery.',
+        title: 'Music Coach',
+        description: 'Provided one-on-one coaching and group classes for aspiring musicians. Developed personalized lesson plans and fostered a positive learning environment.',
         bgColor: 'bg-gray-200',
         textColor: 'text-gray-800',
         darkBgColor: 'dark:bg-gray-700',

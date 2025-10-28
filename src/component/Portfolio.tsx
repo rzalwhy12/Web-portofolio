@@ -4,20 +4,21 @@ import React, { useState, useMemo } from 'react';
 
 interface PortfolioItem {
     id: number;
-    category: 'All' | 'UI & UX' | 'Graphic Design' | 'Web Development' ;
+    category: 'All' | 'Music' | 'Graphic Design' | 'Web Development';
     imageUrl: string;
     title?: string;
     link?: string;
 }
 
 const portfolioItems: PortfolioItem[] = [
-    { id: 1, category: 'Graphic Design', imageUrl: 'images/portofolio/ig1.png', title: 'Instagram Feed', link: 'https://www.google.com' },
-    { id: 2, category: 'Graphic Design', imageUrl: 'images/portofolio/ig2.png', title: 'Instagram Feed', link: 'https://www.google.com' },
-    { id: 3, category: 'Graphic Design', imageUrl: 'images/portofolio/ig3.png', title: 'Instagram Feed', link: 'https://www.google.com' },
-    { id: 4, category: 'Web Development', imageUrl: 'images/portofolio/id3.jpg', title: 'Code Snippet', link: 'https://www.google.com' },
-    { id: 5, category: 'UI & UX', imageUrl: 'images/portofolio/uiux1.png', title: 'ToDo App Desain', link: 'https://www.google.com' },
-    { id: 6, category: 'Web Development', imageUrl: 'images/portofolio/todo.png', title: 'ToDo App ', link: 'https://www.google.com' },
-    { id: 7, category: 'UI & UX', imageUrl: 'images/portofolio/id1.jpg', title: 'Finance App UI', link: 'https://www.google.com' },
+    { id: 1, category: 'Graphic Design', imageUrl: 'images/portofolio/ig1.png', title: 'Instagram Feed', link: 'https://www.instagram.com/p/CuCGSGFJcNb/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==' },
+    { id: 2, category: 'Graphic Design', imageUrl: 'images/portofolio/ig2.png', title: 'Instagram Feed', link: 'https://www.instagram.com/p/Cu3GC-zPy7G/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==' },
+    { id: 3, category: 'Graphic Design', imageUrl: 'images/portofolio/ig3.png', title: 'Instagram Feed', link: 'https://www.instagram.com/p/CwMHxiAJ7bK/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==' },
+    { id: 4, category: 'Web Development', imageUrl: 'images/portofolio/2.png', title: 'Graha Gloria Group', link: 'https://grahagloriagroup.com/' },
+    { id: 5, category: 'Web Development', imageUrl: 'images/portofolio/1.png', title: 'Horizon Jobs', link: 'https://final-project-fe-mauve.vercel.app/' },
+    { id: 6, category: 'Web Development', imageUrl: 'images/portofolio/3.png', title: 'E-football layout', link: 'https://efootball-lay.vercel.app/' },
+    { id: 7, category: 'Web Development', imageUrl: 'images/portofolio/4.png', title: 'Company Website', link: 'https://sda-profile.vercel.app/' },
+    { id: 8, category: 'Music', imageUrl: '/music.png', title: 'Arrangsement', link: 'https://youtu.be/7u6gBCxWqXc' },
 ];
 
 const ITEMS_PER_PAGE = 6; // Ini adalah jumlah item per halaman yang Anda inginkan untuk mengisi grid
@@ -43,7 +44,7 @@ const Portfolio: React.FC = () => {
 
     const categories: PortfolioItem['category'][] = [
         'All',
-        'UI & UX',
+        'Music',
         'Graphic Design',
         'Web Development',
     ];

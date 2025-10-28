@@ -5,8 +5,8 @@ import React from 'react';
 // ==================Daftar Keahlian====================
 const skills = [
     'HTML', 'CSS', 'JavaScript', 'React', 'Wordpress',
-    'PHP', 'SASS', 'GIT', 'Github', 'Responsive Design',
-    'SEO', 'Terminal', 'Node.js', 'Python', 'TypeScript', 'Amin'
+    'Next.js', 'SASS', 'GIT', 'Github', 'Responsive Design',
+    'SEO', 'Terminal', 'Node.js','TypeScript' , 'logic pro', 'fl studio' ,'coreldraw'
 ];
 
 const AboutMe: React.FC = () => {
@@ -37,7 +37,7 @@ const AboutMe: React.FC = () => {
                         <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">Get to know me!</h3>
                         {/* Paragraf perkenalan */}
                         <p className="text-base leading-relaxed text-gray-700 dark:text-gray-300 mb-4">
-                            I&apos;m a <span className="font-semibold text-gray-600 dark:text-purple-400">Frontend Focused Web Developer</span> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequuntur dicta obcaecati neque totam nemo repellendus consequatur nesciunt minima quibusdam, incidunt distinctio eaque ab vel laborum, officia iusto ad facere quod! <a href="#portfolio-section" className="text-gray-600 dark:text-purple-400 hover:underline font-semibold">Projects</a> section.
+                            I&apos;m a <span className="font-semibold text-gray-600 dark:text-purple-400">Fullstack Focused Web Developer</span> currently working on various projects. You can find some of my work in the <a href="#portfolio-section" className="text-gray-600 dark:text-purple-400 hover:underline font-semibold">Projects</a> section.
                         </p>
 
                         {/* ==================Nilai-nilai Saya==================== */}

@@ -20,7 +20,7 @@ const ConnectMe: React.FC = () => {
     // ==================Handler Perubahan Input====================
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
-        setFormData((prevData) => ({
+        setFormData((prevData: typeof formData) => ({
             ...prevData,
             [name]: value,
         }));
@@ -145,7 +145,7 @@ const ConnectMe: React.FC = () => {
                                     name="subject"
                                     value={formData.subject}
                                     onChange={handleChange}
-                                    className="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-500
+                                    className="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-purple-500
                                                dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100 dark:placeholder-gray-400 dark:focus:ring-purple-500" // Warna input di dark mode
                                     placeholder="Subject of your message"
                                     required

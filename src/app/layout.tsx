@@ -29,13 +29,11 @@ export default function RootLayout({
     <html lang="en">
       <ThemeProvider>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white text-gray-900 dark:bg-black dark:text-gray-100 transition-colors duration-300`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300`}
       >
         
           <Navbar />
-          <SmoothScrollProvider>
           {children}
-          </SmoothScrollProvider>
       </body>
       </ThemeProvider>
     </html>

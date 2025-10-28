@@ -8,14 +8,13 @@ import AboutMe from '../component/AboutMe';
 import ConnectMe from '../component/ConnectMe';
 import AboutVideoSection from '../component/AboutVideoSection';
 import WorkExperience from '../component/WorkExperience';
+import HeroduaSection from '../component/herodua';
 
 function App() {
     return (
         <div>
-            <HeroSection />
-            <AboutVideoSection />
+            <HeroduaSection />
             <AboutMe />
-            <WhatIDo />
             <WorkExperience/>
             <Portfolio />
             <ClientTestimonial />

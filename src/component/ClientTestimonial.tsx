@@ -2,24 +2,22 @@
 
     import React, { useState } from 'react';
     import Image from 'next/image';
-    import PersonImg from '../assets/images/Col-block.png'; // Pastikan path ini benar
-    import PersonImg2 from '../assets/images/r7.webp';
 
     // ==================Data Testimonial====================
     const testimonials = [
         {
             id: 1,
-            name: 'Ronaldo',
-            title: 'Goat',
-            quote: 'Kerjanya bagus , anaknya rajin cuma makannya agak banyak tapi ofer ol rekomendet',
-            image: PersonImg2,
+            name: 'Mr. Brian',
+            title: 'CEO PT. logam jaya sentosa',
+            quote: 'Risal adalah seorang pengembang web yang sangat berbakat dan berdedikasi. Dia tidak hanya menguasai teknologi terbaru, tetapi juga memiliki kemampuan untuk memahami kebutuhan bisnis kami dan menerjemahkannya ke dalam solusi digital yang efektif.',
+            image: '/noname.jpg',
         },
         {
             id: 2,
-            name: 'Teman Ayahnya Risal',
-            title: 'Bos Batubarabere',
-            quote: 'Sangat jenius sampai saya tidak bisa berkata-kata , saya ada cerita tapi saya lupa',
-            image: PersonImg
+            name: 'Mrs. Siska',
+            title: 'Project Manager at Tech Solutions',
+            quote: 'Working with Risal was a fantastic experience. His attention to detail and commitment to delivering high-quality work on time exceeded our expectations. He is a true professional in every sense of the word.',
+            image: '/noname.jpg'
         }
     ];
 
@@ -63,7 +61,7 @@
                         className="flex flex-col md:flex-row items-center md:items-start justify-center
                                 gap-6 md:gap-16 max-w-4xl mx-auto
                                 p-6 md:p-8 lg:p-12 // Padding yang responsif
-                                bg-white dark:bg-gray-800 rounded-xl // rounded-xl untuk sedikit lebih modern
+                                bg-white dark:bg-gray-800 rounded-xl
                                 shadow-lg dark:shadow-xl dark:shadow-purple-900/50
                                 transform hover:scale-[1.01] transition-transform duration-300 ease-in-out // Efek hover
                                 border border-gray-100 dark:border-gray-700 // Border tipis untuk minimalis

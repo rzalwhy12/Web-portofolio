@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
+import { CURRENT_YEAR } from '../lib/utils';
 
 const ConnectMe: React.FC = () => {
     const [formData, setFormData] = useState({
@@ -165,7 +166,7 @@ const ConnectMe: React.FC = () => {
                 <div
                     className="container mx-auto px-4 flex flex-col sm:flex-row items-center justify-between text-gray-600 dark:text-gray-400 text-sm"
                 >
-                    <p className="mb-4 sm:mb-0">© {new Date().getFullYear()} Rzal Portofolio Website</p>
+                    <p className="mb-4 sm:mb-0">© {CURRENT_YEAR} Rzal Portofolio Website</p>
                     <div className="flex space-x-6">
                     <a href="https://www.facebook.com/risal.agosteen" target="_blank" rel="noopener noreferrer" aria-label="Facebook"
                             className="text-gray-600 hover:text-gray-800 transition-colors duration-200
