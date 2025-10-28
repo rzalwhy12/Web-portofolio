@@ -179,8 +179,10 @@ const Navbar = () => {
 
                         {/* Tombol Toggle Menu untuk Mobile - Ganti dengan ikon Menu dari Lucide */}
                         <button
+                            type="button"
                             className="p-2 relative md:hidden text-white"
                             onClick={toggleMenu}
+                            onTouchStart={toggleMenu}
                             aria-label="Toggle menu"
                             aria-expanded={isMenuOpen}
                         >
@@ -222,7 +224,7 @@ const Navbar = () => {
                 }}
             >
                 <div className="flex justify-end p-6">
-                    <button className="p-2 text-gray-700 dark:text-gray-200 hover:text-red-500 dark:hover:text-red-400 transition-colors duration-200" onClick={toggleMenu} aria-label="Close menu">
+                    <button type="button" className="p-2 text-gray-700 dark:text-gray-200 hover:text-red-500 dark:hover:text-red-400 transition-colors duration-200" onClick={toggleMenu} onTouchStart={toggleMenu} aria-label="Close menu">
                         <X className="w-7 h-7" />
                     </button>
                 </div>
@@ -238,7 +240,9 @@ const Navbar = () => {
                     {/* About Me Section in Mobile */}
                     <div className="relative">
                         <button
+                            type="button"
                             onClick={toggleAboutSubMenu}
+                            onTouchStart={toggleAboutSubMenu}
                             className="flex items-center w-full justify-between py-3 px-4 text-xl font-semibold text-gray-800 dark:text-gray-200 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition duration-150 ease-in-out"
                         >
                             About Me <ChevronDown className={`ml-1 w-5 h-5 transition-transform duration-200 ${isAboutSubMenuOpen ? 'rotate-180' : 'rotate-0'}`} />
@@ -280,7 +284,9 @@ const Navbar = () => {
                     {/* Contact Section in Mobile */}
                     <div className="relative">
                         <button
+                            type="button"
                             onClick={toggleContactSubMenu}
+                            onTouchStart={toggleContactSubMenu}
                             className="flex items-center w-full justify-between py-3 px-4 text-xl font-semibold text-gray-800 dark:text-gray-200 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition duration-150 ease-in-out"
                         >
                             Contact <ChevronDown className={`ml-1 w-5 h-5 transition-transform duration-200 ${isContactSubMenuOpen ? 'rotate-180' : 'rotate-0'}`} />
