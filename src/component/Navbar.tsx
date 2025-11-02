@@ -197,27 +197,7 @@ const Navbar = () => {
                                 {/* Navigasi Utama (Desktop) */}
                                 <nav className="hidden md:flex space-x-6 lg:space-x-10 text-base lg:text-lg font-medium">
                                     <Link href={getLinkHref('home')} onClick={(e) => handleScrollToSection(e, 'home')} className="hover:text-purple-700 dark:hover:text-yellow-400 whitespace-nowrap">Home</Link>
-
-                                    {/* About Me with Sub-menu */}
-                                    <div className="relative group">
-                                        <button
-                                            onClick={toggleAboutSubMenu}
-                                            className="flex items-center hover:text-purple-700 dark:hover:text-yellow-400 focus:outline-none whitespace-nowrap"
-                                        >
-                                            About Me <ChevronDown className={`ml-1 w-4 h-4 transition-transform duration-200 ${isAboutSubMenuOpen ? 'rotate-180' : 'rotate-0'}`} />
-                                        </button>
-                                        {isAboutSubMenuOpen && (
-                                            <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg py-1 z-50">
-                                                <Link
-                                                    href={getLinkHref('about-me-detailed')}
-                                                    onClick={(e) => handleScrollToSection(e, 'about-me-detailed')}
-                                                    className="block px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 whitespace-nowrap"
-                                                >
-                                                    About Me
-                                                </Link>
-                                            </div>
-                                        )}
-                                    </div>
+                                    <Link href={getLinkHref('about-me-detailed')} onClick={(e) => handleScrollToSection(e, 'about-me-detailed')} className="hover:text-purple-700 dark:hover:text-yellow-400 whitespace-nowrap">About Me</Link>
                                     <Link href={getLinkHref('my-work-experience')} onClick={(e) => handleScrollToSection(e, 'my-work-experience')} className="hover:text-purple-700 dark:hover:text-yellow-400 whitespace-nowrap">Experience</Link>
                                     <Link href={getLinkHref('portfolio')} onClick={(e) => handleScrollToSection(e, 'portfolio')} className="hover:text-purple-700 dark:hover:text-yellow-400 whitespace-nowrap">Portfolio</Link>
                                     <Link href={getLinkHref('client-testimonial')} onClick={(e) => handleScrollToSection(e, 'client-testimonial')} className="hover:text-purple-700 dark:hover:text-yellow-400 whitespace-nowrap">Testimonial</Link>
@@ -316,29 +296,13 @@ const Navbar = () => {
                     >
                         Home
                     </Link>
-
-                    {/* About Me Section in Mobile */}
-                    <div className="relative">
-                        <button
-                            type="button"
-                            onClick={toggleAboutSubMenu}
-                            onTouchStart={toggleAboutSubMenu}
-                            className="flex items-center w-full justify-between py-3 px-4 text-xl font-semibold text-gray-800 dark:text-gray-200 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition duration-150 ease-in-out"
+                    <Link
+                        href={getLinkHref('about-me-detailed')}
+                        onClick={(e) => handleScrollToSection(e, 'about-me-detailed')}
+                        className="py-3 px-4 text-xl font-semibold text-gray-800 dark:text-gray-200 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition duration-150 ease-in-out"
                         >
-                            About Me <ChevronDown className={`ml-1 w-5 h-5 transition-transform duration-200 ${isAboutSubMenuOpen ? 'rotate-180' : 'rotate-0'}`} />
-                        </button>
-                        {isAboutSubMenuOpen && (
-                            <div className="flex flex-col pl-6 mt-1 space-y-1">
-                                <Link
-                                    href={getLinkHref('about-me-detailed')}
-                                    onClick={(e) => handleScrollToSection(e, 'about-me-detailed')}
-                                    className="py-2 px-4 text-lg text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition duration-150 ease-in-out"
-                                >
-                                    About Me
-                                </Link>
-                            </div>
-                        )}
-                    </div>
+                        About Me
+                    </Link>
                     <Link
                         href={getLinkHref('my-work-experience')}
                         className="py-3 px-4 text-xl font-semibold text-gray-800 dark:text-gray-200 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition duration-150 ease-in-out"
