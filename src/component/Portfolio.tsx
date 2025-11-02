@@ -18,7 +18,8 @@ const portfolioItems: PortfolioItem[] = [
     { id: 5, category: 'Web Development', imageUrl: 'images/portofolio/1.png', title: 'Horizon Jobs', link: 'https://final-project-fe-mauve.vercel.app/' },
     { id: 6, category: 'Web Development', imageUrl: 'images/portofolio/3.png', title: 'E-football layout', link: 'https://efootball-lay.vercel.app/' },
     { id: 7, category: 'Web Development', imageUrl: 'images/portofolio/4.png', title: 'Company Website', link: 'https://sda-profile.vercel.app/' },
-    { id: 8, category: 'Music', imageUrl: '/music.png', title: 'Arrangsement', link: 'https://youtu.be/7u6gBCxWqXc' },
+    { id: 8, category: 'Music', imageUrl: '/music.png', title: 'Datanglah dan bertahta - Live Arrangement Cover', link: 'https://youtu.be/7u6gBCxWqXc' },
+    { id: 9, category: 'Music', imageUrl: '/music2.png', title: 'Nggandol Gusti - Live Arrangement Cover', link: 'https://youtu.be/cQLf5oCsf3g?si=EHZser1mGmLsS3SZ' },
 ];
 
 const ITEMS_PER_PAGE = 6; // Ini adalah jumlah item per halaman yang Anda inginkan untuk mengisi grid
