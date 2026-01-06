@@ -196,7 +196,7 @@ const ConnectMe: React.FC = () => {
                                 <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-6.793-8.983L5.418 21.75H1.49L9.35 12.81 1.01 2.25h8.29L12 9.313 18.244 2.25zm-2.43 14.887l.867.754h3.084l-4.24-3.665-2.478 3.298zm-9.357-11.23L4.17 3.526h-3.084l4.24 3.665L9.357 5.25z" />
                             </svg>
                         </a>
-                        <a href="https://www.instagram.com/rzalwhy/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"
+                        <a href="https://www.instagram.com/risalwahyu20/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"
                             className="text-gray-400 hover:text-gray-600 transition-colors duration-200
                                     dark:text-gray-300 dark:hover:text-purple-400">
                             <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
